@@ -13,21 +13,7 @@ const EmptySquare = ()=>{
         width: '100%',
         aspectRatio:'1/1',
         transform:'rotateY(-90deg) translateX(50%) rotateY(90deg)',
-        [theme.breakpoints.up('xs')]:{
-            
-            borderRadius: theme.shape.borderRadius * 1,
-
-        },
-        [theme.breakpoints.up('phone')]:{
-            
-            borderRadius: theme.shape.borderRadius * 1.5,
-
-        },
-        [theme.breakpoints.up('tablet')]:{
-            
-            borderRadius: theme.shape.borderRadius * 2,
-
-        },
+        borderRadius:'min(8px,1vw,0.7vh*(6/8))',
     
     }))
 

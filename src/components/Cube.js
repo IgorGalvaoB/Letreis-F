@@ -24,9 +24,10 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
         width: '100%',
         aspectRatio: '1/1',
         transformStyle: 'preserve-3d',
+        transform:'rotateY(-90deg) translateX(-50%) rotateY(90deg)',
         rotateY: x.to({ range: [0, 0.5, 1], output: [0, 90, 180] }),
-        translateY: i.to({ range: [0, 0.5, 1], output: ['0vh', '-2.3vh', '0vh'] }),
-       
+        translateY: i.to({ range: [0, 0.5, 1], output: ['0vh', '-3vh', '0vh'] }),
+      
     }
 
 
@@ -35,7 +36,7 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
             <animated.div style={{
                 ...rotate,
             }}>
-                <InputSquare select={select || 0} id={id || 0} letter={letter || ''} setSelect={() => { setSelect(id) }} />
+                <InputSquare select={select || 0} id={id || 0} letter={letter || 'A'} setSelect={() => { setSelect(id) }} />
                 <EmptySquare />
                 <FilledSquare background={Object.values(backLetter)[0] || 0} letter={Object.keys(backLetter)[0] || ''} />
             </animated.div>

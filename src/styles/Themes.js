@@ -6,7 +6,7 @@ const Themes = {
                 xs:0,
                 phone:330,
                 tablet:450,
-                sm:600,
+                sm:530,
                 md:900,
                 lg:1200,
                 xl:1536,

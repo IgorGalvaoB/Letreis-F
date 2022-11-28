@@ -26,16 +26,16 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
             return
 
         } else {
-
-            if (attempt === id && !won) {
+            setStage(prev=>prev+0.5)
+            /* if (attempt === id && !won) {
                 setStage(prev => prev + 0.5)
 
             }
-            if (attempt === id + 1 && stage !== 1) {
+            if ((attempt === id + 1 ||attempt===id+2) && stage !== 1) {
 
                 setStage(prev => prev + 0.5)
 
-            }
+            } */
         }
 
     }, [attempt])
@@ -70,14 +70,15 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
     const props = {
 
         width: '100%',
+        height:'100%',
         translateX: stage===0.5&&i.to({ range: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], output: ['0%', '-3%', '3%', '-3%', '3%', '-3%', '3%', '-3%', '3%', '-3%', '0%'] }),
 
     }
     return (
 
-        <Container maxWidth='sm' sx={{ outline: 'none', marginTop: '6.5vh' }}>
+        <Container maxWidth='sm'sx={{border:'3px solid red',width:'min(100vw,70vh*(6/8))',aspectRatio:'6/8',marginTop:'5vh'}} >
             <animated.div style={{ ...props }}>
-                <Grid container spacing={{ xs: 1.2, phone: 1.8, tablet: 2.6, sm: 3 }} columns={NUMBER_OF_LETTERS}>
+                <Grid container spacing={{ xs: '4px' }}columns={NUMBER_OF_LETTERS}>
                     {wordGrid}
                 </Grid>
             </animated.div>

@@ -11,9 +11,10 @@ const InputSquare = ( { select, id, letter,setSelect } )=>{
     const StyBox = styled(Box)(({ theme }) => ({
 
         boxSizing:'border-box',
+        fontWeight:900,
+        fontSize:'min(60px,9vw,6vh*(6/8))',
         cursor:'pointer',
         backgroundColor: theme.palette.background.default,
-       
         backfaceVisibility: 'hidden',
         position: 'absolute',
         width: '100%',
@@ -24,38 +25,18 @@ const InputSquare = ( { select, id, letter,setSelect } )=>{
         height:'100%',
         transform:'translateX(-50%) rotateY(-90deg)',
         color:'white',
-        [theme.breakpoints.up('xs')]:{
-            border:'3px solid',
-            borderBottom:selected?'6px solid':'3px solid',
-            borderRadius: theme.shape.borderRadius * 1,
-            borderColor: theme.palette.secondary.main,
-
-        },
-        [theme.breakpoints.up('phone')]:{
-            
-            border:'5px solid',
-            borderBottom:selected?'10px solid':'5px solid',
-            borderRadius: theme.shape.borderRadius * 1.5,
-            borderColor: theme.palette.secondary.main,
-
-        },
-        [theme.breakpoints.up('tablet')]:{
-            
-            border:'6px solid',
-            borderBottom:selected?'12px solid':'6px solid',
-            borderRadius: theme.shape.borderRadius * 2,
-            borderColor: theme.palette.secondary.main,
-
-        },
+        border: `min(5px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
+        borderBottom:selected?`min(11px,2.1vw,1.5vh*(6/8)) solid ${theme.palette.secondary.main}`:`min(4px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
+        borderRadius:'min(8px,1vw,0.7vh*(6/8))',
     
     }))
 
     return(
 
         <StyBox onClick={setSelect}>
-            <Typography variant='h2'>
+       
                 {letter}
-            </Typography>
+           
         </StyBox>
 
     )
