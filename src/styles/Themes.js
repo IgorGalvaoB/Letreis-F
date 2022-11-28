@@ -6,15 +6,16 @@ const Themes = {
                 xs:0,
                 phone:330,
                 tablet:450,
-                sm:530,
+                sm:600,
                 md:900,
                 lg:1200,
                 xl:1536,
             }
         },
         typography:{
-            h2:{
+            gameGrid:{
                 fontWeight:900,
+                fontSize:'min(60px,9vw,6vh*(6/8))',
             }
         },
         palette: {
@@ -29,14 +30,7 @@ const Themes = {
                 default: '#B0A990',
             },
         },
-        shape:{
-            border:{
-                xs: '4px solid',
-                phone: '8px solid',
-                tablet: '6px solid',
-                sm: '10px solid',
-            }
-        }
+        
     },
 
     darkTheme: {

@@ -15,8 +15,8 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
 
     const { i } = useSpring({
         i: successAnimation ? 0 : 1,
-        config: { mass: 5, tension: 800, friction: 150 },
-        delay: 1200 + (150 * id),
+        config: { mass: 5, tension: 600, friction: 200 },
+        delay: 1400 + (150 * id),
     })
 
     const rotate = {
@@ -26,7 +26,7 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
         transformStyle: 'preserve-3d',
         transform:'rotateY(-90deg) translateX(-50%) rotateY(90deg)',
         rotateY: x.to({ range: [0, 0.5, 1], output: [0, 90, 180] }),
-        translateY: i.to({ range: [0, 0.5, 1], output: ['0vh', '-3vh', '0vh'] }),
+        translateY: i.to({ range: [0, 0.5, 1], output: ['0%', '-50%', '0%'] }),
       
     }
 
@@ -36,7 +36,7 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
             <animated.div style={{
                 ...rotate,
             }}>
-                <InputSquare select={select || 0} id={id || 0} letter={letter || 'A'} setSelect={() => { setSelect(id) }} />
+                <InputSquare select={select || 0} id={id || 0} letter={letter || ''} setSelect={() => { setSelect(id) }} />
                 <EmptySquare />
                 <FilledSquare background={Object.values(backLetter)[0] || 0} letter={Object.keys(backLetter)[0] || ''} />
             </animated.div>

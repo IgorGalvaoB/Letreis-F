@@ -31,32 +31,15 @@ const FilledSquare = ({ background, letter })=>{
         position: 'absolute',
         height: '100%',
         aspectRatio:'1/1',
-        color:'white',
+        color:theme.palette.common.white,
         borderRadius:'min(8px,1vw,0.7vh*(6/8))',
-        /* [theme.breakpoints.up('xs')]:{
-            
-            borderRadius: theme.shape.borderRadius * 1,
-
-        },
-        [theme.breakpoints.up('phone')]:{
-            
-            borderRadius: theme.shape.borderRadius * 1.5,
-
-        },
-        [theme.breakpoints.up('tablet')]:{
-            
-            borderRadius: theme.shape.borderRadius * 2,
-
-        }, */
     
-        
-
     }))
   
     return(
 
         <StyBox>
-            <Typography variant='h2'>
+            <Typography variant='gameGrid'>
                 {letter}
             </Typography>
         </StyBox>

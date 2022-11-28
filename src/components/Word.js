@@ -11,32 +11,32 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
     const [thisBackWord, setThisBackWord] = useState(backWord)
     const [successAnimation, setSuccessAnimation] = useState(false)
     const [isFirstRun, setIsFirstRun] = useState(true);
-    const wordGrid = new Array(NUMBER_OF_LETTERS).fill().map((item, index) => {
+    const wordGrid = new Array(NUMBER_OF_LETTERS).fill().map((_, index) => {
         return (
-            <Grid xs={1} key={index} sx={{ perspective: '200px' }}>
-                <Cube backLetter={thisBackWord[index]} letter={thisWord[index]} id={index} select={select} stage={stage} setSelect={setSelect} successAnimation={successAnimation} won={won} />
+            <Grid xs={1} key={index} sx={{ perspective: '100px'}}>
+                <Cube backLetter={thisBackWord[index]} letter={thisWord?thisWord[index]:null} id={index} select={select} stage={stage} setSelect={setSelect} successAnimation={successAnimation}/>
             </Grid>
         )
     })
 
     useEffect(() => {
-
+       
         if (isFirstRun) {
             setIsFirstRun(false)
             return
 
-        } else {
-            setStage(prev=>prev+0.5)
-            /* if (attempt === id && !won) {
+        } else { 
+            
+            if (attempt === id && !won) {
                 setStage(prev => prev + 0.5)
 
             }
-            if ((attempt === id + 1 ||attempt===id+2) && stage !== 1) {
+            if ((attempt === id + 1) && stage !== 1) {
 
                 setStage(prev => prev + 0.5)
 
-            } */
-        }
+            } 
+        } 
 
     }, [attempt])
 
@@ -49,16 +49,16 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
     }, [word])
 
     useEffect(() => {
-        if (attempt === id) {
+        if (attempt === id+1) {
 
             setThisBackWord(backWord)
-            const success = Object.values(backWord).reduce((prev, current) => {
-                return prev + current
-            }, 0)
-            if (success === (NUMBER_OF_LETTERS * 2)) {
+
+            const success = backWord[NUMBER_OF_LETTERS]
+            
+            if (success) {
+                
                 setSuccessAnimation(true)
             }
-
         }
     }, [backWord])
    
@@ -68,23 +68,22 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
 
     })
     const props = {
-
+      
         width: '100%',
-        height:'100%',
         translateX: stage===0.5&&i.to({ range: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], output: ['0%', '-3%', '3%', '-3%', '3%', '-3%', '3%', '-3%', '3%', '-3%', '0%'] }),
 
     }
     return (
 
-        <Container maxWidth='sm'sx={{border:'3px solid red',width:'min(100vw,70vh*(6/8))',aspectRatio:'6/8',marginTop:'5vh'}} >
+        <Container maxWidth='sm' sx={{border:'3px solid red',width:'min(100vw,65vh*(6/8))',marginTop:'6vh'}} >
             <animated.div style={{ ...props }}>
-                <Grid container spacing={{ xs: '4px' }}columns={NUMBER_OF_LETTERS}>
+                <Grid container spacing={{ xs: '2px', phone:'4px' }} columns={NUMBER_OF_LETTERS} >
                     {wordGrid}
                 </Grid>
             </animated.div>
         </Container>
 
-    )
+    )   
 
 }
 

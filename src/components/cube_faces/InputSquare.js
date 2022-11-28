@@ -10,9 +10,6 @@ const InputSquare = ( { select, id, letter,setSelect } )=>{
 
     const StyBox = styled(Box)(({ theme }) => ({
 
-        boxSizing:'border-box',
-        fontWeight:900,
-        fontSize:'min(60px,9vw,6vh*(6/8))',
         cursor:'pointer',
         backgroundColor: theme.palette.background.default,
         backfaceVisibility: 'hidden',
@@ -24,7 +21,7 @@ const InputSquare = ( { select, id, letter,setSelect } )=>{
         justifyContent:'center',
         height:'100%',
         transform:'translateX(-50%) rotateY(-90deg)',
-        color:'white',
+        color:theme.palette.common.white,
         border: `min(5px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
         borderBottom:selected?`min(11px,2.1vw,1.5vh*(6/8)) solid ${theme.palette.secondary.main}`:`min(4px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
         borderRadius:'min(8px,1vw,0.7vh*(6/8))',
@@ -34,9 +31,9 @@ const InputSquare = ( { select, id, letter,setSelect } )=>{
     return(
 
         <StyBox onClick={setSelect}>
-       
+            <Typography variant='gameGrid'>
                 {letter}
-           
+            </Typography>
         </StyBox>
 
     )
