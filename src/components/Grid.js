@@ -19,8 +19,8 @@ const GridGame = () => {
     const [wrongAnimation, setWrongAnimation] = useState(false)
     let grid
     const ref = useRef(null)
-    const handleKeyDown=(e)=>{
-        click(e)
+    const handleKeyDown=(event)=>{
+        click(event,select,setSelect,word,setWord)
     }
     useEffect(() => {
         if (data && date) {

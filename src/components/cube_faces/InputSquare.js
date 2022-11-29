@@ -25,7 +25,7 @@ const InputSquare = ({ select, setSelect, id, letter }) => {
         color: theme.palette.common.white,
         border: `min(9px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
         borderBottom: selected ? `min(16px,2.1vw,1.5vh*(6/8)) solid ${theme.palette.secondary.main}` : `min(9px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
-        borderRadius: 'min(12px,1vh,2vw)',
+        borderRadius: 'min(12px,2vh,2vw)',
 
     }))
 
