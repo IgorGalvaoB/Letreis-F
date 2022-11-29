@@ -24,7 +24,7 @@ const Themes = {
                 main: '#635C51',
             },
             secondary:{
-                main:'#7D7461',
+                main:'#635C4E',
             },
             background: {
                 default: '#B0A990',

@@ -20,7 +20,7 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
     })
 
     useEffect(() => {
-       
+        
         if (isFirstRun) {
             setIsFirstRun(false)
             return
@@ -31,7 +31,7 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
                 setStage(prev => prev + 0.5)
 
             }
-            if ((attempt === id + 1) && stage !== 1) {
+            if ((attempt === id + 1) && stage !== 1 && !won) {
 
                 setStage(prev => prev + 0.5)
 
@@ -75,13 +75,13 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
     }
     return (
 
-        <Container maxWidth='sm' sx={{border:'3px solid red',width:'min(100vw,65vh*(6/8))',marginTop:'6vh'}} >
+       
             <animated.div style={{ ...props }}>
-                <Grid container spacing={{ xs: '2px', phone:'4px' }} columns={NUMBER_OF_LETTERS} >
+                <Grid container columnSpacing={{ xs: '2px', phone:'4px' }} columns={NUMBER_OF_LETTERS} >
                     {wordGrid}
                 </Grid>
             </animated.div>
-        </Container>
+      
 
     )   
 
