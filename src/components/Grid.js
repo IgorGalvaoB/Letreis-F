@@ -3,7 +3,9 @@ import { Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Word from "./Word";
 import click from "../controllers/click.controller";
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { Typography } from '@mui/material';
 const NUMBER_OF_ATTEMPTS = 8
 const NUMBER_OF_LETTERS = 6
 
@@ -78,14 +80,22 @@ const GridGame = () => {
 
     return (
         <>
-
-            <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '10vh' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
+            <AppBar position='static'>
+                <Toolbar  sx={{height:'5vh',width:'300px'}}>
+                <Typography variant='h3'>
+                    LETREIS
+                 </Typography>   
+                </Toolbar>
+            </AppBar>
+            <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '1vh' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
                 <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                     {grid}
                 </Grid>
             </Container>
             
-            <button onClick={()=>{setAttempt(attempt+1)}}></button>
+            <button onClick={()=>{
+                setSelect(0)
+                setAttempt(attempt+1)}}></button>
         </>
     )
 }

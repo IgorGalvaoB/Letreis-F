@@ -14,13 +14,19 @@ const Themes = {
             }
         },
         typography:{
-            gameGrid:{
-                fontFamily:[
-                    'Nerko-one'
-                  ].join(','),
+            h3:{
+                fontFamily:'baloo-regular',
                 fontWeight:900,
-                fontSize:'min(70px,14vw,(0.65vh*(6/8))*14)',
-            }
+                fontSize: 'min(5vh,50px,5vw)'
+                
+
+            },
+            gameGrid:{
+                fontFamily:'baloo-regular',
+                fontWeight:900,
+                fontSize:'min(80px,12vw,(0.65vh*(6/8))*12)',
+            },
+
         },
         palette: {
             mode: 'light',
@@ -30,8 +36,11 @@ const Themes = {
             secondary:{
                 main:'#635C4E',
             },
+            warning:{
+                main:'#F7B816'
+            },
             background: {
-                default: '#B0A990',
+                default: '#7CA4B8'//'#A7A1B3',//'#B0A990',
             },
         },
         
