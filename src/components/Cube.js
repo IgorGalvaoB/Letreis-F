@@ -25,7 +25,7 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
     const { j } = useSpring({
 
         j: input ? 0 : 1,
-        config: { mass: 1, tension: 5000, friction: 100 },
+        config: { mass: 1, tension: 350, friction: 25 },
         
     })
     const props = {
@@ -52,7 +52,7 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
             <animated.div style={{
                 ...props,
             }}>
-                <InputSquare select={select || 0} id={id || 0} letter={letter || ''} setSelect={() => { stage===0.5&&setSelect(id) }}/>
+                <InputSquare select={select} id={id} letter={letter || ''} setSelect={() => { stage===0.5&&setSelect(id) }}/>
                 <EmptySquare />
                 <FilledSquare background={Object.values(backLetter)[0] || 0} letter={Object.keys(backLetter)[0] || ''} />
             </animated.div>

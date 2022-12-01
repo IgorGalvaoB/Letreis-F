@@ -1,3 +1,4 @@
+
 const Themes = {
     lightTheme: {
         keys:['xs','phone','tablet','sm','md','lg','xl'],
@@ -6,7 +7,7 @@ const Themes = {
                 xs:0,
                 phone:330,
                 tablet:450,
-                sm:600,
+                sm:650,
                 md:900,
                 lg:1200,
                 xl:1536,
@@ -14,8 +15,11 @@ const Themes = {
         },
         typography:{
             gameGrid:{
+                fontFamily:[
+                    'Nerko-one'
+                  ].join(','),
                 fontWeight:900,
-                fontSize:'min(60px,9vw,6vh*(6/8))',
+                fontSize:'min(70px,14vw,(0.65vh*(6/8))*14)',
             }
         },
         palette: {
@@ -33,35 +37,7 @@ const Themes = {
         
     },
 
-    darkTheme: {
-        keys:['xs','sm','lsm','md','lg','xl'],
-        breakpoints:{
-            values:{
-                xs:0,
-                sm:600,
-                lsm:750,
-                md:900,
-                lg:1200,
-                xl:1536,
-            }
-        },
-        palette: {
-            mode: 'dark',
-            primary: {
-                main: '#7D746',
-            },
-        },
-        shape:{
-            border:{
-                xs: '4px solid',
-                xs2: '8px solid',
-                lsm: '6px solid',
-                lsm2: '12px solid',
-                md: '9px solid',
-                md2: '18px solid',
-            }
-        }
-    }
+  
 }
 
 export default Themes

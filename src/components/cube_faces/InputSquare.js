@@ -1,8 +1,7 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { useEffect, useState } from 'react';
-import { animated, useSpring } from "react-spring";
+
 
 
 const InputSquare = ({ select, setSelect, id, letter }) => {
@@ -24,9 +23,9 @@ const InputSquare = ({ select, setSelect, id, letter }) => {
         transform: 'translateX(-50%) rotateY(-90deg)',
         color: theme.palette.common.white,
         border: `min(9px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
+        borderRadius: 'min(8px,1vw,0.7vh*(6/8))',
         borderBottom: selected ? `min(16px,2.1vw,1.5vh*(6/8)) solid ${theme.palette.secondary.main}` : `min(9px,1vw,0.7vh*(6/8)) solid ${theme.palette.secondary.main}`,
-        borderRadius: 'min(12px,2vh,2vw)',
-
+        
     }))
 
     return (

@@ -19,16 +19,23 @@ const GridGame = () => {
     const [wrongAnimation, setWrongAnimation] = useState(false)
     let grid
     const ref = useRef(null)
+
     const handleKeyDown=(event)=>{
-        click(event,select,setSelect,word,setWord)
+
+        click(event,select,setSelect,word,setWord,backWord, 'answer', attempt)
+
     }
     useEffect(() => {
         if (data && date) {
+
             if (date === fortaleza_date_str) {
+
                 setAttempt(data.length)
                 setWon(data[data.length - 1][NUMBER_OF_LETTERS])
+
             }
         }
+
         ref.current.focus()
     }, [])
 
@@ -72,11 +79,13 @@ const GridGame = () => {
     return (
         <>
 
-            <Container maxWidth='sm' sx={{ width: 'min(100vw,65vh*(6/8))', marginTop: '6vh' }} tabIndex='-1' onKeyDown={handleKeyDown} ref={ref}>
+            <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '10vh' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
                 <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                     {grid}
                 </Grid>
             </Container>
+            
+            <button onClick={()=>{setAttempt(attempt+1)}}></button>
         </>
     )
 }
