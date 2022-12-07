@@ -1,28 +1,65 @@
-/* import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Unstable_Grid2';
 import { useState, useLayoutEffect, useEffect } from 'react';
+import ButtonKeyboard from './ButtonKeyboard';
+import BackspaceIcon from '@mui/icons-material/Backspace';
+import { Container, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
-const Keyboard = ({backWord, prevData})=>{
-    const [firstRow,setFirstRow] = useState[{'Q':0},{'W':0},{'E':0},{'R':0},{'T':0},{'Y':0},{'U':0},{'I':0},{'O':0},{'P':0}]
-    {
-        A:
-    }
-    const [secondRow,setSecondRow] = useState[{'A':0},{'S':0},{'D':0},{'F':0},{'G':0},{'H':0},{'J':0},{'K':0},{'L':0},{'P':0},{'delete':0}]
-    
+const Keyboard = ({ keys  }) => {
+
+    /* for(const [key,value] of Object.entries(keyboardKeys)){
+        console.log(key)
+    } */
+
+    const boardLine1 = Object.entries(keys).slice(0, 10).map((item, index) => {
+
+        return (
+            <Grid key={item[0]} xs={1}>
+                <ButtonKeyboard background={item[1]} letter={item[0]}></ButtonKeyboard>
+            </Grid>
+        )
+    })
+    const boardLine2 = Object.entries(keys).slice(10, 20).map((item, index) => {
+
+        return (
+            <Grid key={item[0]} xs={item[0]==='DEL'?2:1}>
+                <ButtonKeyboard background={item[1]} letter={item[0]    }></ButtonKeyboard>
+            </Grid>
+        )
+    })
+    const boardLine3 = Object.entries(keys).slice(20, 30).map((item, index) => {
+
+        return (
+            <Grid key={item[0]} xs={item[0]==='ENTER'?2:1} >
+                <ButtonKeyboard background={item[1]} letter={item[0]}></ButtonKeyboard>
+            </Grid>
+        )
+    })
+
+    return (
+        <Container sx={{ width: 'min(100%,100vw,30vh*(12/3))',aspectRatio:'11/3', padding:'0px'}} >
+            <Grid  columns={12} sx={{ width: '100%',margin:'0px'}} container rowSpacing={{xs:'1px', phone:'2px'}}  >
+                <Grid xs={12}>
+                    <Grid container columns={11} xsOffset={0.5}columnSpacing={{xs:'2px',lg:'4px'}} sx={{width:'100%'}}>
+                        {boardLine1}
+                    </Grid>
+                </Grid>
+                <Grid xs={12}>
+                    <Grid container columns={11} columnSpacing={{xs:'2px',lg:'4px'}} sx={{width:'100%'}}>
+                        {boardLine2}
+                    </Grid>
+                </Grid>
+                <Grid xs={12}>
+                    <Grid container columns={11} columnSpacing={{xs:'2px',lg:'4px'}} sx={{width:'100%'}}>
+                        {boardLine3}
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Container>
+    )
 }
 
-export default Keyboard */
-
-const a = {
-    'A':2,
-    B:3,
-    D:4,
-    C:4,
-   
-
-
-}
-
-for(const C in a){
-    console.log(a.A)
-}
+export default Keyboard
 
