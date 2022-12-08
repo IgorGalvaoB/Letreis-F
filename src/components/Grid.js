@@ -6,6 +6,7 @@ import click from "../controllers/click.controller";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Typography } from '@mui/material';
+import Keyboard from "./keyboard/Keyboard";
 const NUMBER_OF_ATTEMPTS = 8
 const NUMBER_OF_LETTERS = 6
 
@@ -21,12 +22,48 @@ const GridGame = () => {
     const [wrongAnimation, setWrongAnimation] = useState(false)
     let grid
     const ref = useRef(null)
+    const [keyboardKeys, setKeyboardKeys] = useState({
+
+        Q: 0,
+        W: 0,
+        E: 0,
+        R: 0,
+        T: 0,
+        Y: 0,
+        U: 0,
+        I: 0,
+        O: 0,
+        P: 0,
+        A: 0,
+        S: 0,
+        D: 0,
+        F: 0,
+        G: 0,
+        H: 0,
+        J: 0,
+        K: 0,
+        L: 0,
+        DEL: 0, 
+        Z: 0,
+        X: 0,
+        C: 0,
+        V: 0,
+        B: 0,
+        N: 0,
+        M: 0,
+        LEFT:0,
+        RIGHT:0,
+        ENTER: 0,
+
+
+    })
 
     const handleKeyDown=(event)=>{
 
         click(event,select,setSelect,word,setWord,backWord, 'answer', attempt)
 
     }
+    
     useEffect(() => {
         if (data && date) {
 
@@ -46,6 +83,9 @@ const GridGame = () => {
     if (data && (date === fortaleza_date_str)) {
 
         grid = data.map((item, index) => {
+            for(let i=0; i<6;i++){
+                console.log(item[i])
+            }
             return (
                 <Grid xs={1} key={index + 100}>
                     <Word id={100 + index} attempt={attempt} backWord={item} stg={1} />
@@ -54,11 +94,11 @@ const GridGame = () => {
         })
 
         const wonCondition = data[data.length - 1][NUMBER_OF_LETTERS]
-
+        setWon(wonCondition)
         grid = grid.concat(new Array(NUMBER_OF_ATTEMPTS - data.length).fill().map((_, index) => {
             return (
                 <Grid xs={1} key={index}>
-                    <Word id={index + data.length} backWord={backWord} stg={(index === 0 && !wonCondition) ? 0.5 : 0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won}></Word>
+                    <Word id={index + data.length} backWord={backWord} stg={(index === 0 && !wonCondition) ? 0.5 : 0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won}/>
                 </Grid>
             )
         }))
@@ -68,7 +108,7 @@ const GridGame = () => {
         grid = new Array(NUMBER_OF_ATTEMPTS).fill().map((_, index) => {
             return (
                 <Grid xs={1} key={index} >
-                    <Word id={index} backWord={backWord} stg={index === 0 ? 0.5 : 0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won}></Word>
+                    <Word id={index} backWord={backWord} stg={index === 0 ? 0.5 : 0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won}/>
                 </Grid>
             )
         })
@@ -80,22 +120,15 @@ const GridGame = () => {
 
     return (
         <>
-            <AppBar position='static'>
-                <Toolbar  sx={{height:'5vh',width:'300px'}}>
-                <Typography variant='h3'>
-                    LETREIS
-                 </Typography>   
-                </Toolbar>
-            </AppBar>
-            <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '1vh' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
-                <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
-                    {grid}
-                </Grid>
-            </Container>
             
-            <button onClick={()=>{
-                setSelect(0)
-                setAttempt(attempt+1)}}></button>
+            <Container maxWidth='lg'sx={{height:'93vh', display:'flex',flexDirection:'column', justifyContent:'space-between'}}>
+                <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
+                    <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
+                        {grid}
+                    </Grid>
+                </Container>
+                <Keyboard keys={keyboardKeys}></Keyboard>
+            </Container>
         </>
     )
 }

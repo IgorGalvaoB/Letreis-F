@@ -1,17 +1,10 @@
 import Grid from '@mui/material/Unstable_Grid2';
-import { useState, useLayoutEffect, useEffect } from 'react';
 import ButtonKeyboard from './ButtonKeyboard';
-import BackspaceIcon from '@mui/icons-material/Backspace';
-import { Container, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
+import { Container } from '@mui/material';
 
-const Keyboard = ({ keys  }) => {
 
-    /* for(const [key,value] of Object.entries(keyboardKeys)){
-        console.log(key)
-    } */
+const Keyboard = ({ keys }) => {
+
 
     const boardLine1 = Object.entries(keys).slice(0, 10).map((item, index) => {
 
@@ -38,21 +31,22 @@ const Keyboard = ({ keys  }) => {
         )
     })
 
+
     return (
         <Container sx={{ width: 'min(100%,100vw,30vh*(12/3))',aspectRatio:'11/3', padding:'0px'}} >
-            <Grid  columns={12} sx={{ width: '100%',margin:'0px'}} container rowSpacing={{xs:'1px', phone:'2px'}}  >
+            <Grid  columns={12} sx={{ width: '100%',margin:'0px'}} container rowSpacing={{xs:0.5,sm:1}} >
                 <Grid xs={12}>
-                    <Grid container columns={11} xsOffset={0.5}columnSpacing={{xs:'2px',lg:'4px'}} sx={{width:'100%'}}>
+                    <Grid container columns={11} xsOffset={0.4} columnSpacing={{xs:0.5, sm:1}}sx={{width:'100%'}}>
                         {boardLine1}
                     </Grid>
                 </Grid>
                 <Grid xs={12}>
-                    <Grid container columns={11} columnSpacing={{xs:'2px',lg:'4px'}} sx={{width:'100%'}}>
+                    <Grid container columns={11} columnSpacing={{xs:0.7,sm:2}} sx={{width:'100%'}}>
                         {boardLine2}
                     </Grid>
                 </Grid>
                 <Grid xs={12}>
-                    <Grid container columns={11} columnSpacing={{xs:'2px',lg:'4px'}} sx={{width:'100%'}}>
+                    <Grid container columns={11} columnSpacing={{xs:0.7,sm:2}} sx={{width:'100%'}}>
                         {boardLine3}
                     </Grid>
                 </Grid>
