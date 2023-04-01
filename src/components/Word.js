@@ -58,6 +58,7 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
             if (success) {
                 
                 setSuccessAnimation(true)
+                
             }
         }
     }, [backWord])

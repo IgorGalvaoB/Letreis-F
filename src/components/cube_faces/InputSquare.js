@@ -11,7 +11,7 @@ const InputSquare = ({ select, setSelect, id, letter }) => {
     const StyBox = styled(Box)(({ theme }) => ({
 
         cursor:'pointer',
-        backgroundColor: theme.palette.background.default,
+       
         backfaceVisibility: 'hidden',
         position: 'absolute',
         width: '100%',
