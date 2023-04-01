@@ -15,7 +15,7 @@ const Keyboard = ({ keys }) => {
         )
     })
     const boardLine2 = Object.entries(keys).slice(10, 20).map((item, index) => {
-
+        console.log(item)
         return (
             <Grid key={item[0]} xs={item[0]==='DEL'?2:1}>
                 <ButtonKeyboard background={item[1]} letter={item[0]    }></ButtonKeyboard>
