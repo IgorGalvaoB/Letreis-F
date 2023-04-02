@@ -22,6 +22,7 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
     useEffect(() => {
         
         if (isFirstRun) {
+            
             setIsFirstRun(false)
             return
 
@@ -29,10 +30,10 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
             
             if (attempt === id && !won) {
                 setStage(prev => prev + 0.5)
+                console.log('b')
 
             }
-            if ((attempt === id + 1) && stage !== 1 && !won) {
-
+            if ((attempt === id + 1)  && !won) {
                 setStage(prev => prev + 0.5)
 
             } 

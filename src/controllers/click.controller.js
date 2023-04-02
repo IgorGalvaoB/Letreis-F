@@ -7,8 +7,8 @@ const click = (event, select, setSelect, word, setWord, backWord, answer, attemp
     
     const charCode = event.keyCode
     
+    
     const handleSelect = (space) => {
-        
         if(select===null)return
         let aux = null
         let k = select+1
@@ -110,12 +110,12 @@ const click = (event, select, setSelect, word, setWord, backWord, answer, attemp
         //veri
 
     } else {
-        console.log('a')
+       
         return 
 
     }
 
-    console.log(event.keyCode)
+    
 
 }
 export default click

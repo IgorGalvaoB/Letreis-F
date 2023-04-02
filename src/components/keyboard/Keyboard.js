@@ -3,22 +3,22 @@ import ButtonKeyboard from './ButtonKeyboard';
 import { Container } from '@mui/material';
 
 
-const Keyboard = ({ keys }) => {
+const Keyboard = ({ keys,word, select, setSelect,setWord }) => {
 
-
+   
     const boardLine1 = Object.entries(keys).slice(0, 10).map((item, index) => {
 
         return (
             <Grid key={item[0]} xs={1}>
-                <ButtonKeyboard background={item[1]} letter={item[0]}></ButtonKeyboard>
+                <ButtonKeyboard background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord}></ButtonKeyboard>
             </Grid>
         )
     })
     const boardLine2 = Object.entries(keys).slice(10, 20).map((item, index) => {
-        console.log(item)
+        
         return (
             <Grid key={item[0]} xs={item[0]==='DEL'?2:1}>
-                <ButtonKeyboard background={item[1]} letter={item[0]    }></ButtonKeyboard>
+                <ButtonKeyboard background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord} ></ButtonKeyboard>
             </Grid>
         )
     })
@@ -26,7 +26,7 @@ const Keyboard = ({ keys }) => {
 
         return (
             <Grid key={item[0]} xs={item[0]==='ENTER'?2:1} >
-                <ButtonKeyboard background={item[1]} letter={item[0]}></ButtonKeyboard>
+                <ButtonKeyboard background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord}></ButtonKeyboard>
             </Grid>
         )
     })
@@ -46,7 +46,7 @@ const Keyboard = ({ keys }) => {
                     </Grid>
                 </Grid>
                 <Grid xs={12}>
-                    <Grid container columns={11} columnSpacing={{xs:0.7,sm:2}} sx={{width:'100%'}}>
+                    <Grid container columns={11} xsOffset={0.925} columnSpacing={{xs:0.7,sm:2}} sx={{width:'100%'}}>
                         {boardLine3}
                     </Grid>
                 </Grid>
