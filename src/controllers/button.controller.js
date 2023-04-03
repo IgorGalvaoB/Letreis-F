@@ -61,6 +61,7 @@ const button = (word,letter,select,setSelect,setWord)=>{
             }
            
             break;
+            
         default:
             if(select!== null){
 
@@ -69,5 +70,6 @@ const button = (word,letter,select,setSelect,setWord)=>{
             }
             
     }
+
 }
 export default button
