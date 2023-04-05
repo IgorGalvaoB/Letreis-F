@@ -55,7 +55,7 @@ const GridGame = forwardRef((props,ref) => {
 
     const handleKeyDown=(event)=>{
 
-        click(event,select,setSelect,word,setWord,backWord, 'answer', attempt)
+        click(event,select,setSelect,word,setWord,setBackWord, 'answer', attempt,setAttempt, wrongAnimation, setWrongAnimation)
 
     }
     
@@ -120,9 +120,6 @@ const GridGame = forwardRef((props,ref) => {
                     </Grid>
                 </Container>
                 <Keyboard keys={keyboardKeys} word={word} select={select} setSelect={setSelect} setWord={setWord}></Keyboard>
-                <button onClick={()=>{setAttempt(attempt+1)}}></button>
-                <button onClick={()=>{setWrongAnimation(!wrongAnimation)}}></button>
-
             </Container>
         </>
     )

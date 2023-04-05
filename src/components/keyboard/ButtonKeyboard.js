@@ -47,10 +47,10 @@ const ButtonKeyboard = ({ background, letter,word,setWord,select, setSelect})=>{
     return(
 
         <StyBox onClick={controlButton}>
-            {letter!=='DEL'&&<Typography variant='gameGrid' sx={{fontSize:'20px'}}>
+            {letter!=='DEL'&&<Typography variant='gameGrid'>
                 {letter}
             </Typography>}
-            {letter==='DEL'&&<BackspaceIcon sx={{fontSize:'15px', transform:'traslanteX(90px)'}}/>}
+            {letter==='DEL'&&<BackspaceIcon sx={{fontSize:'min(70px,10vw,(0.55vh*(6/8))*12)', transform:'traslanteX(90px)'}}/>}
         </StyBox>
 
     )

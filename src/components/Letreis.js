@@ -11,7 +11,7 @@ const Letreis = () => {
     }, [])
     return (
 
-        <div style={{ width: '100%', height: '100%' }} onClick={handleClick} >
+        <div onClick={handleClick} >
             <Grid ref={ref}></Grid>
         </div>
 
