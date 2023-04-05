@@ -29,7 +29,6 @@ const button = (word,letter,select,setSelect,setWord)=>{
                 setSelect(aux)
 
             }
-            
         }else{
 
             setSelect(aux)

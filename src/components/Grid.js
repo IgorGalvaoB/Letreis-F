@@ -3,9 +3,6 @@ import { Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Word from "./Word";
 import click from "../controllers/click.controller";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import { Typography } from '@mui/material';
 import Keyboard from "./keyboard/Keyboard";
 const NUMBER_OF_ATTEMPTS = 8
 const NUMBER_OF_LETTERS = 6
@@ -124,6 +121,8 @@ const GridGame = forwardRef((props,ref) => {
                 </Container>
                 <Keyboard keys={keyboardKeys} word={word} select={select} setSelect={setSelect} setWord={setWord}></Keyboard>
                 <button onClick={()=>{setAttempt(attempt+1)}}></button>
+                <button onClick={()=>{setWrongAnimation(!wrongAnimation)}}></button>
+
             </Container>
         </>
     )
