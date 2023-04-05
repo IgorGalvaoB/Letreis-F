@@ -24,7 +24,7 @@ const Themes = {
             gameGrid:{
                 fontFamily:'baloo-regular',
                 fontWeight:900,
-                fontSize:'min(80px,12vw,(0.65vh*(6/8))*12)',
+                fontSize:'min(70px,10vw,(0.55vh*(6/8))*12)',
             },
 
         },

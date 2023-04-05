@@ -1,10 +1,17 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import button from '../../controllers/button.controller';
 import BackspaceIcon from '@mui/icons-material/Backspace';
-const ButtonKeyboard = ({ background, letter })=>{
+const ButtonKeyboard = ({ background, letter,word,setWord,select, setSelect})=>{
+ 
     const theme = useTheme()
     const aspect = letter === 'DEL'?'2/1':(letter==='ENTER'?'2/1':'1/1')
+    const controlButton = ()=>{
+        button(word,letter,select,setSelect,setWord)
+       
+        return
+    }
     const backgroundColor = ()=>{
        
         switch(background){
@@ -39,11 +46,11 @@ const ButtonKeyboard = ({ background, letter })=>{
   
     return(
 
-        <StyBox>
-            {letter!=='DEL'&&<Typography variant='gameGrid' sx={{fontSize:'20px'}}>
+        <StyBox onClick={controlButton}>
+            {letter!=='DEL'&&<Typography variant='gameGrid'>
                 {letter}
             </Typography>}
-            {letter==='DEL'&&<BackspaceIcon sx={{fontSize:'15px', transform:'traslanteX(90px)'}}/>}
+            {letter==='DEL'&&<BackspaceIcon sx={{fontSize:'min(70px,10vw,(0.55vh*(6/8))*12)', transform:'traslanteX(90px)'}}/>}
         </StyBox>
 
     )

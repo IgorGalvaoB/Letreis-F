@@ -1,17 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Word from "./Word";
 import click from "../controllers/click.controller";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import { Typography } from '@mui/material';
 import Keyboard from "./keyboard/Keyboard";
 const NUMBER_OF_ATTEMPTS = 8
 const NUMBER_OF_LETTERS = 6
 
-const GridGame = () => {
-    const fortaleza_date_str = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -9)
+const GridGame = forwardRef((props,ref) => {
+    const fortaleza_date_str = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
     const savedLetreis = JSON.parse(localStorage.getItem('Letreis'))
     const { data, date } = savedLetreis ? savedLetreis : { date: null, data: null }
     const [word, setWord] = useState(new Array(NUMBER_OF_LETTERS).fill(''))
@@ -21,7 +18,7 @@ const GridGame = () => {
     const [backWord, setBackWord] = useState(new Array(6).fill({ '': 0 }))
     const [wrongAnimation, setWrongAnimation] = useState(false)
     let grid
-    const ref = useRef(null)
+    
     const [keyboardKeys, setKeyboardKeys] = useState({
 
         Q: 0,
@@ -51,8 +48,6 @@ const GridGame = () => {
         B: 0,
         N: 0,
         M: 0,
-        LEFT:0,
-        RIGHT:0,
         ENTER: 0,
 
 
@@ -60,7 +55,7 @@ const GridGame = () => {
 
     const handleKeyDown=(event)=>{
 
-        click(event,select,setSelect,word,setWord,backWord, 'answer', attempt)
+        click(event,select,setSelect,word,setWord,setBackWord, 'answer', attempt,setAttempt, wrongAnimation, setWrongAnimation)
 
     }
     
@@ -69,23 +64,20 @@ const GridGame = () => {
 
             if (date === fortaleza_date_str) {
 
-                setAttempt(data.length)
                 setWon(data[data.length - 1][NUMBER_OF_LETTERS])
 
             }
         }
 
-        ref.current.focus()
+        
     }, [])
 
     //grid construction
 
     if (data && (date === fortaleza_date_str)) {
-
+            console.log('b')
         grid = data.map((item, index) => {
-            for(let i=0; i<6;i++){
-                console.log(item[i])
-            }
+            
             return (
                 <Grid xs={1} key={index + 100}>
                     <Word id={100 + index} attempt={attempt} backWord={item} stg={1} />
@@ -94,11 +86,11 @@ const GridGame = () => {
         })
 
         const wonCondition = data[data.length - 1][NUMBER_OF_LETTERS]
-        setWon(wonCondition)
+
         grid = grid.concat(new Array(NUMBER_OF_ATTEMPTS - data.length).fill().map((_, index) => {
             return (
                 <Grid xs={1} key={index}>
-                    <Word id={index + data.length} backWord={backWord} stg={(index === 0 && !wonCondition) ? 0.5 : 0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won}/>
+                    <Word id={index} backWord={backWord} stg={index===0 && !wonCondition?0.5:0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won}/>
                 </Grid>
             )
         }))
@@ -122,15 +114,15 @@ const GridGame = () => {
         <>
             
             <Container maxWidth='lg'sx={{height:'93vh', display:'flex',flexDirection:'column', justifyContent:'space-between'}}>
-                <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
+                <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS/NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh',outline:'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref}>
                     <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                         {grid}
                     </Grid>
                 </Container>
-                <Keyboard keys={keyboardKeys}></Keyboard>
+                <Keyboard keys={keyboardKeys} word={word} select={select} setSelect={setSelect} setWord={setWord}></Keyboard>
             </Container>
         </>
     )
-}
+})
 
 export default GridGame

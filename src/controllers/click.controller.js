@@ -1,14 +1,14 @@
 
-
+import isWordExists from "./isWordExists.controller"
 const NUMBER_OF_LETTERS = 6
 
 
-const click = (event, select, setSelect, word, setWord, backWord, answer, attempt) => {
+const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation) => {
     
     const charCode = event.keyCode
     
+    
     const handleSelect = (space) => {
-        
         if(select===null)return
         let aux = null
         let k = select+1
@@ -107,15 +107,26 @@ const click = (event, select, setSelect, word, setWord, backWord, answer, attemp
         
     } else if( charCode === 13 ){
 
-        //veri
+        try {
+            const data = await isWordExists(word.join(""))
+            //await compareAnswer
+            setBackWord(data)
+            setAttempt(attempt+1)
+            setSelect(0)
+            setWord((new Array(NUMBER_OF_LETTERS).fill('')))
+        } catch (error) {
+            console.log(error.message)
+            //aqui adiciona a wrong animation
+            setWrongAnimation(!wrongAnimation)
+        }
 
     } else {
-        console.log('a')
+       
         return 
 
     }
 
-    console.log(event.keyCode)
+    
 
 }
 export default click
