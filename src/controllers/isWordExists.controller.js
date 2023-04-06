@@ -24,6 +24,7 @@ const isWordExists = async (word)=>{
             const error = new Error(`word does not exists`)
             throw error
         }
+        
         return (backWord.toUpperCase().split('').map(r=>{
             const a = {}
             a[r] = 1
