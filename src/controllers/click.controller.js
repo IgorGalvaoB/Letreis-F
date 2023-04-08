@@ -109,14 +109,13 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
 
         try {
             const data = await isWordExists(word.join(""))
-            //await compareAnswer
+            //await compareAnswer˜
             setBackWord(data)
             setAttempt(attempt+1)
             setSelect(0)
             setWord((new Array(NUMBER_OF_LETTERS).fill('')))
         } catch (error) {
             console.log(error.message)
-            //aqui adiciona a wrong animation
             setWrongAnimation(!wrongAnimation)
         }
 
