@@ -1,14 +1,14 @@
 const NUMBER_OF_LETTERS = 6
-const compareAnswer =  (word, answer) => {
-    const auxAnswer = answer
-    const auxWord = word
+const compareAnswer = async (word, answer) => {
+    const auxAnswer = [...answer.split("")]
+    const auxWord = [...word]
 
     const exactMatch = (str, strToMatch) => {
         
-        for (i = 0; i < NUMBER_OF_LETTERS; i++) {
+        for (let i = 0; i < NUMBER_OF_LETTERS; i++) {
             const match = !str[i].localeCompare(strToMatch[i], 'pt-BR', { sensitivity: 'base' })
             if (match) {
-                console.log(match)
+                
                 const aux = {}
                 aux[str[i]] = 2
                 str[i] = aux
@@ -26,11 +26,11 @@ const compareAnswer =  (word, answer) => {
     }
     const halfMatch = (str, strToMatch) => {
         
-        for (i = 0; i < NUMBER_OF_LETTERS; i++) {
+        for (let i = 0; i < NUMBER_OF_LETTERS; i++) {
             if (Object.values(str[i])[0] === 2) {
                 continue
             }
-            for (j = 0; j < strToMatch.length; j++) {
+            for (let j = 0; j < strToMatch.length; j++) {
                 const matchedBefore = strToMatch[j][1] === 'matched'
 
                 if (matchedBefore) {
@@ -52,20 +52,27 @@ const compareAnswer =  (word, answer) => {
 
     }
 
-
-
-    exactMatch(auxWord, auxAnswer)
-
-    halfMatch(auxWord, auxAnswer)
-
-    auxWord[auxWord.length] = auxWord.reduce((prev,current)=>{
-        aux = Object.values(current)[0]
-        return prev+aux
-    },0)
-
-    auxWord[auxWord.length-1] === NUMBER_OF_LETTERS*2?auxWord[auxWord.length-1]=true:auxWord[auxWord.length-1]=false
+    try {
+        
+        exactMatch(auxWord, auxAnswer)
     
-    return (auxWord)
+        halfMatch(auxWord, auxAnswer)
+    
+        auxWord[auxWord.length] = auxWord.reduce((prev,current)=>{
+    
+            const aux = Object.values(current)[0]
+    
+            return prev+aux
+            
+        },0) 
+    
+        auxWord[auxWord.length-1] === NUMBER_OF_LETTERS*2?auxWord[auxWord.length-1]=true:auxWord[auxWord.length-1]=false
+        
+        return auxWord
+    } catch (error) {
+        console.log(error)
+    }
+
     
 }
 
