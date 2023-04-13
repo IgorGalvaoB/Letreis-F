@@ -1,5 +1,6 @@
 
 import isWordExists from "./isWordExists.controller"
+import compareAnswer from "./compareAnswer.controller"
 const NUMBER_OF_LETTERS = 6
 
 
