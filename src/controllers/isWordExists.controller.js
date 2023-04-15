@@ -1,5 +1,5 @@
 import dicio from '../data/dicio';
-const NUMBER_OF_LETTERS = 6
+const NUMBER_OF_LETTERS = 5
 const isWordExists = async (word)=>{
     const compare = async (word2) => {
         const wordLowerCase = word2.toLowerCase()
@@ -24,13 +24,7 @@ const isWordExists = async (word)=>{
             const error = new Error(`word does not exists`)
             throw error
         }
-        
-        /* console.log(backWord.toUpperCase().split('').map(r=>{
-            const aux = {}  
-            aux[r] = 1
-            return aux
-        })) */ 
-         console.log(backWord)
+         
          return backWord.split("")
     } catch (error) {
     

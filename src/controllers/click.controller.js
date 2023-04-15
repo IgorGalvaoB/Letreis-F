@@ -1,10 +1,11 @@
 
 import isWordExists from "./isWordExists.controller"
 import compareAnswer from "./compareAnswer.controller"
-const NUMBER_OF_LETTERS = 6
+import keyboardControl from "./keyboard.controller"
+const NUMBER_OF_LETTERS = 5
 
 
-const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon) => {
+const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon,keyboardKeys,setKeyboardKeys) => {
     
     const charCode = event.keyCode
     
@@ -118,6 +119,7 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
             setAttempt(attempt+1)
             setSelect(0)
             setWord((new Array(NUMBER_OF_LETTERS).fill('')))
+            keyboardControl(keyboardKeys,setKeyboardKeys,data)
             
             
         } catch (error) {
