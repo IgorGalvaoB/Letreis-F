@@ -1,4 +1,4 @@
-const NUMBER_OF_LETTERS = 5
+const NUMBER_OF_LETTERS = 6
 
 
 const keyboardControl = (keys, setKeys, word) => {

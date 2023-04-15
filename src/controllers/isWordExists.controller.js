@@ -1,5 +1,5 @@
 import dicio from '../data/dicio';
-const NUMBER_OF_LETTERS = 5
+const NUMBER_OF_LETTERS = 6
 const isWordExists = async (word)=>{
     const compare = async (word2) => {
         const wordLowerCase = word2.toLowerCase()

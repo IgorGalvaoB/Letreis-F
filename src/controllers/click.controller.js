@@ -2,7 +2,7 @@
 import isWordExists from "./isWordExists.controller"
 import compareAnswer from "./compareAnswer.controller"
 import keyboardControl from "./keyboard.controller"
-const NUMBER_OF_LETTERS = 5
+const NUMBER_OF_LETTERS = 6
 
 
 const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon,keyboardKeys,setKeyboardKeys) => {
