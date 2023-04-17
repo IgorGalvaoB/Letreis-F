@@ -18,8 +18,11 @@ const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, ans
     const [backWord, setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
     const [wrongAnimation, setWrongAnimation] = useState(false)
     const [answer, setAnswer] = useState("ambito")
-    let grid
-    const[isFirstRun,setIsFirstRun] = useState(true)
+    let grid = []
+    const [grid1,setGrid1] = useState([])
+    const [grid2,setGrid2] = useState([])
+    
+    const [dataLength,setDataLength] = useState(0)
     const [keyboardKeys, setKeyboardKeys] = useState({
 
         q: 0,
@@ -62,39 +65,36 @@ const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, ans
 
     useEffect(() => {
 
-        if (data && date &&!isFirstRun) {
-
+        if (data && date) {
+            
+            
             if (date === fortaleza_date_str) {
-
                 setWon(data[data.length - 1][NUMBER_OF_LETTERS])
 
             }
         }
+        if (data && (date === fortaleza_date_str)) {
+            setDataLength(data.length)
+            setGrid1(data.map((item, index) => {
+    
+                return (
+                    <Grid xs={1} key={index + 100}>
+                        <Word id={100 + index} attempt={attempt} backWord={item} stg={1} />
+                    </Grid>
+                )
+            }))}
 
 
     }, [])
 
     //grid construction
-    useEffect(()=>{
-        if(isFirstRun){
-            setIsFirstRun(false)
-        }
-    },[])
+   
 
-    if (data && (date === fortaleza_date_str)&&!isFirstRun) {
-
-        grid = data.map((item, index) => {
-
-            return (
-                <Grid xs={1} key={index + 100}>
-                    <Word id={100 + index} attempt={attempt} backWord={item} stg={1} />
-                </Grid>
-            )
-        })
+    if (data && (date === fortaleza_date_str)) {
 
         const wonCondition = data[data.length - 1][NUMBER_OF_LETTERS]
 
-        grid = grid.concat(new Array(NUMBER_OF_ATTEMPTS - data.length).fill().map((_, index) => {
+        grid = grid.concat(new Array(NUMBER_OF_ATTEMPTS - dataLength).fill().map((_, index) => {
             return (
                 <Grid xs={1} key={index}>
                     <Word id={index} backWord={backWord} stg={index === 0 && !wonCondition ? 0.5 : 0} word={word} attempt={attempt} select={select} setSelect={setSelect} wrongAnimation={wrongAnimation} won={won} />
@@ -113,8 +113,7 @@ const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, ans
         })
 
     }
-
-
+  
 
     return (
         <>
@@ -122,6 +121,7 @@ const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, ans
             <Container maxWidth='lg' sx={{ height: '93vh', display: 'flex', flexDirection: 'column' }} style={{ display: visibility === false && 'none' }}>
                 <Container maxWidth='sm' sx={{ width: `min(90vw,60vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
                     <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
+                        {grid1}
                         {grid}
                     </Grid>
                 </Container>
