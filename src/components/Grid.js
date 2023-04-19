@@ -114,7 +114,6 @@ const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, ans
 
     }
   
-
     return (
         <>
 
