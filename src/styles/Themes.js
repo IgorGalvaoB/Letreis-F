@@ -26,11 +26,6 @@ const Themes = {
                 fontWeight:900,
                 fontSize:'min(70px,10vw,(0.55vh*(6/8))*12)',
             },
-            gameKeyboard:{
-                fontFamily:'baloo-regular',
-                fontWeight:900,
-                fontSize:'min(2px,2vw,(0.40vh*(2/11))',
-            },
 
         },
         palette: {

@@ -1,5 +1,5 @@
-
-const compareAnswer = async (word, answer,NUMBER_OF_LETTERS) => {
+const NUMBER_OF_LETTERS = 6
+const compareAnswer = async (word, answer) => {
     const auxAnswer = [...answer.split("")]
     const auxWord = [...word]
 
