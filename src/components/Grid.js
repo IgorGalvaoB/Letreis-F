@@ -17,7 +17,6 @@ const GridGame = forwardRef((props,ref) => {
     const [attempt, setAttempt] = useState(0)
     const [backWord, setBackWord] = useState(new Array(6).fill({ '': 0 }))
     const [wrongAnimation, setWrongAnimation] = useState(false)
-    const [answer,setAnswer] = useState("ambito")
     let grid
     
     const [keyboardKeys, setKeyboardKeys] = useState({
@@ -56,7 +55,7 @@ const GridGame = forwardRef((props,ref) => {
 
     const handleKeyDown=(event)=>{
 
-        click(event,select,setSelect,word,setWord,setBackWord, answer, attempt,setAttempt, wrongAnimation, setWrongAnimation,setWon)
+        click(event,select,setSelect,word,setWord,setBackWord, 'answer', attempt,setAttempt, wrongAnimation, setWrongAnimation)
 
     }
     
@@ -76,9 +75,9 @@ const GridGame = forwardRef((props,ref) => {
     //grid construction
 
     if (data && (date === fortaleza_date_str)) {
-        
+            console.log('b')
         grid = data.map((item, index) => {
-            console.log(item)
+            
             return (
                 <Grid xs={1} key={index + 100}>
                     <Word id={100 + index} attempt={attempt} backWord={item} stg={1} />

@@ -30,12 +30,12 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
             
             if (attempt === id && !won) {
                 setStage(prev => prev + 0.5)
-                
+                console.log('b')
 
             }
             if ((attempt === id + 1)  && !won) {
                 setStage(prev => prev + 0.5)
-                
+
             } 
         } 
 
@@ -63,11 +63,7 @@ const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongA
             }
         }
     }, [backWord])
-    useEffect(()=>{
-        if(id===attempt-1&&won===true){
-            setStage(stage+0.5)
-        }
-    },[won])
+   
     const { i } = useSpring({
         i:  wrongAnimation ? 0 : 1,
         config: { mass: 5, tension: 750, friction: 100 },
