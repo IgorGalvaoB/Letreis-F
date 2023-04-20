@@ -16,7 +16,7 @@ const ToggleThemeLetrix = () => {
 
 
     return (
-        <ThemeContext.Provider value={toggleTheme}ß>
+        <ThemeContext.Provider value={toggleTheme}>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Letreis></Letreis>
