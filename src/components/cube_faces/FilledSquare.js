@@ -40,7 +40,7 @@ const FilledSquare = ({ background, letter })=>{
 
         <StyBox>
             <Typography variant='gameGrid'>
-                {letter}
+                {letter.toUpperCase()}
             </Typography>
         </StyBox>
 
