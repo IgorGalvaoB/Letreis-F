@@ -1,12 +1,11 @@
-import { useState, useEffect,useContext } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import Cube from './Cube';
-import { NumberOfLettersContext } from "./Letreis";
+import { Container } from '@mui/material';
 import { animated, useSpring } from "react-spring";
+const NUMBER_OF_LETTERS = 6
 
 const Word = ({ id, word, backWord, stg, attempt, select, setSelect, won, wrongAnimation }) => {
-    const NUMBER_OF_LETTERS = useContext(NumberOfLettersContext).NUMBER_OF_LETTERS
-    
     const [stage, setStage] = useState(stg)
     const [thisWord, setThisWord] = useState(word)
     const [thisBackWord, setThisBackWord] = useState(backWord)
