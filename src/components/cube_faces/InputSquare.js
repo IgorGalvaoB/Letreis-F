@@ -33,7 +33,7 @@ const InputSquare = ({ select, setSelect, id, letter }) => {
 
         <StyBox onClick={setSelect}>
             <Typography variant='gameGrid'>
-                {letter}
+                {letter.toUpperCase()}
             </Typography>
         </StyBox>
 
