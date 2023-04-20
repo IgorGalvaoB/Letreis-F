@@ -1,9 +1,10 @@
 
 import isWordExists from "./isWordExists.controller"
+import compareAnswer from "./compareAnswer.controller"
 const NUMBER_OF_LETTERS = 6
 
 
-const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation) => {
+const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon) => {
     
     const charCode = event.keyCode
     
@@ -106,17 +107,22 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
         handleSelect(true)
         
     } else if( charCode === 13 ){
-
+        
         try {
-            const data = await isWordExists(word.join(""))
-            //await compareAnswer
+            
+            const auxWord = await isWordExists(word.join(""))
+        
+            const data = await compareAnswer(auxWord,answer,setBackWord,setAttempt,setSelect,setWord)
             setBackWord(data)
+            data[NUMBER_OF_LETTERS] === true&&setWon(true)
             setAttempt(attempt+1)
             setSelect(0)
             setWord((new Array(NUMBER_OF_LETTERS).fill('')))
+            
+            
         } catch (error) {
+
             console.log(error.message)
-            //aqui adiciona a wrong animation
             setWrongAnimation(!wrongAnimation)
         }
 

@@ -7,7 +7,7 @@ import EmptySquare from "./cube_faces/EmptySquare";
 
 const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimation }) => {
 
-    const [input, setInput] = useState(false)
+    const [input, setInput] = useState(true)
     const { x } = useSpring({
 
         x: stage,
