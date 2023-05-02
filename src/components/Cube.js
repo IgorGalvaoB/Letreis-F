@@ -11,14 +11,14 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
     const { x } = useSpring({
 
         x: stage,
-        config: { mass: 5, tension: 700, friction: 80 },
+        config: { mass: 5, tension: 900, friction: 80 },
         delay: 300 * id,
 
     })
     const { i } = useSpring({
 
         i: successAnimation ? 0 : 1,
-        config: { mass: 7, tension: 900, friction: 900 },
+        config: { mass: 7, tension: 900, friction: 300 },
         delay: 1400 + (150 * id),
 
     })

@@ -6,22 +6,23 @@ import click from "../controllers/click.controller";
 import Keyboard from "./keyboard/Keyboard";
 import { NumberOfLettersContext } from "./Letreis";
 
-const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, answer2 }, ref) => {
+const GridGame = forwardRef((props,ref) => {
     const context = useContext(NumberOfLettersContext)
     const NUMBER_OF_LETTERS = context.NUMBER_OF_LETTERS
     const NUMBER_OF_ATTEMPTS = context.NUMBER_OF_ATTEMPTS
+    const [select,setSelect] = useState(0)
     const fortaleza_date_str = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
     const savedLetreis = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
     const { data, date } = savedLetreis ? savedLetreis : { date: null, data: null }
     const [won, setWon] = useState(false)
     const [attempt, setAttempt] = useState(0)
-    const [backWord, setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
+    const [backWord,setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
+    const [word, setWord] = useState(new Array(NUMBER_OF_LETTERS).fill(''))
     const [wrongAnimation, setWrongAnimation] = useState(false)
-    const [answer, setAnswer] = useState("ambito")
+    const [answer, setAnswer] = useState(props.answer)
     let grid = []
     const [grid1,setGrid1] = useState([])
-    const [grid2,setGrid2] = useState([])
-    
+  
     const [dataLength,setDataLength] = useState(0)
     const [keyboardKeys, setKeyboardKeys] = useState({
 
@@ -117,7 +118,7 @@ const GridGame = forwardRef(({ word, setWord, setSelect, select, visibility, ans
     return (
         <>
 
-            <Container maxWidth='lg' sx={{ height: '93vh', display: 'flex', flexDirection: 'column' }} style={{ display: visibility === false && 'none' }}>
+            <Container maxWidth='lg' sx={{ height: '93vh', display: 'flex', flexDirection: 'column' }}>
                 <Container maxWidth='sm' sx={{ width: `min(90vw,60vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
                     <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                         {grid1}

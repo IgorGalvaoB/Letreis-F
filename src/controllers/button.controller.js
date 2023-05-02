@@ -1,5 +1,10 @@
-const NUMBER_OF_LETTERS = 6
-const button = (word,letter,select,setSelect,setWord)=>{
+
+import isWordExists from "./isWordExists.controller"
+import compareAnswer from "./compareAnswer.controller"
+import keyboardControl from "./keyboard.controller"
+
+const button = async ( letter,select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon,keyboardKeys,setKeyboardKeys,NUMBER_OF_LETTERS) =>{
+console.log( letter,select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon,keyboardKeys,setKeyboardKeys,NUMBER_OF_LETTERS) 
 
     const handleSelect = (space) => {
         if(select===null)return
@@ -37,7 +42,37 @@ const button = (word,letter,select,setSelect,setWord)=>{
     }
     switch(letter){
         case "ENTER":
-            return;
+            
+                try {
+                    
+                    const auxWord = await isWordExists(word.join(""),NUMBER_OF_LETTERS)
+                
+                    const data = await compareAnswer(auxWord,answer,NUMBER_OF_LETTERS)
+                    setBackWord(data)
+                    data[NUMBER_OF_LETTERS] === true&&setWon(true)
+                    setAttempt(attempt+1)
+                    setSelect(0)
+                    setWord((new Array(NUMBER_OF_LETTERS).fill('')))
+                    keyboardControl(keyboardKeys,setKeyboardKeys,data)
+                    const arr = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
+                    if(arr && arr.date===new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)){
+                        arr.data.push(data)
+                        localStorage.setItem(`Letreis${NUMBER_OF_LETTERS}`, JSON.stringify(arr));
+                    }else{
+                        const date = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
+                        const newLog = {
+                            data:[],
+                            date:date
+                        }
+                        newLog.data.push(data)
+                        localStorage.setItem(`Letreis${NUMBER_OF_LETTERS}`, JSON.stringify(newLog));
+                    } 
+                } catch (error) {
+        
+                    console.log(error.message)
+                    setWrongAnimation(!wrongAnimation)
+                }
+                break;
         case "DEL":
             if(select === null){
 
