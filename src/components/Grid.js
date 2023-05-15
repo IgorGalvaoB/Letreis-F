@@ -19,7 +19,7 @@ const GridGame = forwardRef((props,ref) => {
     const [backWord,setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
     const [word, setWord] = useState(new Array(NUMBER_OF_LETTERS).fill(''))
     const [wrongAnimation, setWrongAnimation] = useState(false)
-    const [answer, setAnswer] = useState(props.answer)
+    const answer=props.answer
     let grid = []
     const [grid1,setGrid1] = useState([])
   

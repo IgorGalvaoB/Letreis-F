@@ -8,8 +8,7 @@ const ButtonKeyboard = ({ funci,background, letter,word,setWord,select, setSelec
     const theme = useTheme()
     const aspect = letter === 'DEL'?'2/1':(letter==='ENTER'?'2/1':'1/1')
     const controlButton = ()=>{
-        button(word,letter,select,setSelect,setWord)
-        funci()
+        
         return
     }
     const backgroundColor = ()=>{

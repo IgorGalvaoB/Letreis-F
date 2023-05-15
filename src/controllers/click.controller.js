@@ -112,7 +112,6 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
         try {
             
             const auxWord = await isWordExists(word.join(""),NUMBER_OF_LETTERS)
-        
             const data = await compareAnswer(auxWord,answer,NUMBER_OF_LETTERS)
             setBackWord(data)
             data[NUMBER_OF_LETTERS] === true&&setWon(true)
@@ -120,19 +119,21 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
             setSelect(0)
             setWord((new Array(NUMBER_OF_LETTERS).fill('')))
             keyboardControl(keyboardKeys,setKeyboardKeys,data)
-            /* const arr = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
+            const arr = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
             if(arr && arr.date===new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)){
                 arr.data.push(data)
                 localStorage.setItem(`Letreis${NUMBER_OF_LETTERS}`, JSON.stringify(arr));
+                
             }else{
                 const date = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
                 const newLog = {
                     data:[],
                     date:date
                 }
+                
                 newLog.data.push(data)
                 localStorage.setItem(`Letreis${NUMBER_OF_LETTERS}`, JSON.stringify(newLog));
-            } */
+            } 
         } catch (error) {
 
             console.log(error.message)
