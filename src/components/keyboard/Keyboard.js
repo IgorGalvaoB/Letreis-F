@@ -33,7 +33,7 @@ const Keyboard = ({ keys,word, select, setSelect,setWord }) => {
 
 
     return (
-        <Container sx={{ width: 'min(100vw,30vh*(11/3))',aspectRatio:'11/3', padding:'0px'}} >
+        <Container sx={{ width: 'min(100vw,25vh*(11/3))',aspectRatio:'11/3', padding:'0px'}} >
             <Grid  columns={12} sx={{ width: '100%',margin:'0px'}} container rowSpacing={{xs:0.5,sm:1}} >
                 <Grid xs={12}>
                     <Grid container columns={11} xsOffset={0.4} columnSpacing={{xs:0.5, sm:1}}sx={{width:'100%'}}>
