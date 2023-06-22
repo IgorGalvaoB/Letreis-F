@@ -6,7 +6,9 @@ import click from "../controllers/click.controller";
 import Keyboard from "./keyboard/Keyboard";
 import { NumberOfLettersContext } from "./Letreis";
 
+
 const GridGame = forwardRef((props,ref) => {
+
     const context = useContext(NumberOfLettersContext)
     const NUMBER_OF_LETTERS = context.NUMBER_OF_LETTERS
     const NUMBER_OF_ATTEMPTS = context.NUMBER_OF_ATTEMPTS
@@ -16,6 +18,7 @@ const GridGame = forwardRef((props,ref) => {
     const { data, date } = savedLetreis ? savedLetreis : { date: null, data: null }
     const [won, setWon] = useState(false)
     const [attempt, setAttempt] = useState(0)
+
     const [backWord,setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
     const [word, setWord] = useState(new Array(NUMBER_OF_LETTERS).fill(''))
     const [wrongAnimation, setWrongAnimation] = useState(false)
@@ -23,6 +26,7 @@ const GridGame = forwardRef((props,ref) => {
     let grid = []
     const [grid1,setGrid1] = useState([])
   
+ 
     const [dataLength,setDataLength] = useState(0)
     const [keyboardKeys, setKeyboardKeys] = useState({
 

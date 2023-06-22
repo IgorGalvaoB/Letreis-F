@@ -20,8 +20,10 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
     const { i } = useSpring({
 
         i: successAnimation ? 0 : 1,
+
         config: { mass: 7, tension: 900, friction: 150 },
         delay: NUMBER_OF_LETTERS*260 + (100 * id),
+
 
     })
     const { j } = useSpring({

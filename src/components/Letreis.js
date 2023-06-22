@@ -9,6 +9,7 @@ export const NumberOfLettersContext = createContext({})
 
 const Letreis = () => {
 
+
     
     const ref = useRef(null)
     const location = useLocation().pathname
@@ -51,10 +52,12 @@ const Letreis = () => {
 
     }
 
+
     const { data, loading } = useFetch()
 
 
     useEffect(() => {
+
 
         ref.current.focus()
 
@@ -65,15 +68,19 @@ const Letreis = () => {
     return (
         <>
 
+
             <div onClick={handleClick} style={{ display: loading && 'none',height:'100%',overflow:'hidden' }}>
             <AppBar/>
             
          
+
                 <Routes>
                     <Route path='/' element={
                         <>
                             <NumberOfLettersContext.Provider value={{ NUMBER_OF_LETTERS: 5, NUMBER_OF_ATTEMPTS: 6 }}>
+
                                 <Grid key={"5/1"} ref={ref} answer={data ? data.split(',')[0] : "00000"} ></Grid>
+
                             </NumberOfLettersContext.Provider>
                         </>
 
@@ -81,6 +88,7 @@ const Letreis = () => {
                     </Route>
                     <Route path="/6" element={
                         <NumberOfLettersContext.Provider value={{ NUMBER_OF_LETTERS: 6, NUMBER_OF_ATTEMPTS: 8 }}>
+
                             <Grid ref={ref} key={"6/1"} answer={data ? data.split(',')[1] : "000000"} />
                         </NumberOfLettersContext.Provider>
 
