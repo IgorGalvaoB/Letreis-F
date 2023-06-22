@@ -6,23 +6,27 @@ import click from "../controllers/click.controller";
 import Keyboard from "./keyboard/Keyboard";
 import { NumberOfLettersContext } from "./Letreis";
 
-const GridGame = forwardRef(({ visibility, answer }, ref) => {
+
+const GridGame = forwardRef((props,ref) => {
+
     const context = useContext(NumberOfLettersContext)
     const NUMBER_OF_LETTERS = context.NUMBER_OF_LETTERS
     const NUMBER_OF_ATTEMPTS = context.NUMBER_OF_ATTEMPTS
+    const [select,setSelect] = useState(0)
     const fortaleza_date_str = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
     const savedLetreis = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
     const { data, date } = savedLetreis ? savedLetreis : { date: null, data: null }
     const [won, setWon] = useState(false)
     const [attempt, setAttempt] = useState(0)
-    const [word, setWord] = useState(new Array(5).fill(''))
-    const [backWord, setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
+
+    const [backWord,setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
+    const [word, setWord] = useState(new Array(NUMBER_OF_LETTERS).fill(''))
     const [wrongAnimation, setWrongAnimation] = useState(false)
-    
+    const answer=props.answer
     let grid = []
     const [grid1,setGrid1] = useState([])
-    const [grid2,setGrid2] = useState([])
-    const [select, setSelect] = useState(0)
+  
+ 
     const [dataLength,setDataLength] = useState(0)
     const [keyboardKeys, setKeyboardKeys] = useState({
 
@@ -118,14 +122,15 @@ const GridGame = forwardRef(({ visibility, answer }, ref) => {
     return (
         <>
 
-            <Container maxWidth='lg' sx={{ height: '93vh', display: 'flex', flexDirection: 'column' }} style={{ display: visibility === false && 'none' }}>
-                <Container maxWidth='sm' sx={{ width: `min(90vw,60vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
+            <Container maxWidth='lg' sx={{ height: '87vh', display: 'flex', flexDirection: 'column',marginTop:'5vh' }}>
+                <Container maxWidth='sm' sx={{ width: `min(90vw,50vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
                     <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                         {grid1}
                         {grid}
                     </Grid>
                 </Container>
-                <Keyboard keys={keyboardKeys} word={word} select={select} setSelect={setSelect} setWord={setWord}></Keyboard>
+                
+                <Keyboard select={select} setSelect={setSelect} word={word} setWord={setWord} setBackWord={setBackWord} answer={answer} attempt={attempt} setAttempt={setAttempt} wrongAnimation={wrongAnimation} setWrongAnimation={setWrongAnimation} setWon={setWon} keys={keyboardKeys} setKeyboardKeys={setKeyboardKeys} NUMBER_OF_LETTERS={NUMBER_OF_LETTERS}></Keyboard>
             </Container>
         </>
     )

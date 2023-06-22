@@ -1,49 +1,86 @@
 import Grid from "./Grid"
-
-import { useEffect, useRef, createContext, useState } from 'react'
+import AppBar from "./AppBar"
+import { useEffect, useRef, createContext } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import useFetch from "../utils/useFetch"
 export const NumberOfLettersContext = createContext({})
+
 
 
 const Letreis = () => {
 
-    const ref5 = useRef(null)
+
+    
+    const ref = useRef(null)
     const location = useLocation().pathname
-    const [answer,setAnswer] =useState(["agora","ambito"])
+
+    /*const makeAPICall = async () => {
+        try {
+
+            //const response = useFetch()
+            let { data } = await response.json();
+            data = data.split(',')
+            setAnswer5(data[0])
+            setAnswer6(data[1]) 
+            //console.log(response)
+
+        } catch (error) {
+
+            console.log(error)
+
+        }
+
+    }
+    useEffect(() => {
+
+        const date = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
+        console.log(JSON.parse(localStorage.getItem(`Letreis6`)))
+        let data6 = JSON.parse(localStorage.getItem(`Letreis6`))
+        if (data6) {
+            console.log(data6.date6)
+        }
+
+        useFetch()
+        makeAPICall();
+
+
+    }, [])*/
+
     const handleClick = () => {
 
-        ref5.current.focus()
+        ref.current.focus()
 
     }
 
 
-    useEffect(() => {
+    const { data, loading } = useFetch()
 
-        ref5.current.focus()
-
-    }, [])
 
     useEffect(() => {
-        if(location==="/"||location==="/6"){
 
-            ref5.current.focus()
-        }
 
-    }, [location])
+        ref.current.focus()
+
+    }, [location, loading])
+
 
 
     return (
         <>
-            <div onClick={handleClick} >
 
-                <Link to='/'><button>dfafdsf</button></Link>
-                <Link to='/6'><button>sadfasdfasdfa</button></Link>
-                <Link to='/me'><button>sadfasdfasdfa</button></Link>
+
+            <div onClick={handleClick} style={{ display: loading && 'none',height:'100%',overflow:'hidden' }}>
+            <AppBar/>
+            
+         
+
                 <Routes>
                     <Route path='/' element={
                         <>
                             <NumberOfLettersContext.Provider value={{ NUMBER_OF_LETTERS: 5, NUMBER_OF_ATTEMPTS: 6 }}>
-                                <Grid key={1} ref={ref5} answer={answer[0]}></Grid>
+
+                                <Grid key={"5/1"} ref={ref} answer={data ? data.split(',')[0] : "00000"} ></Grid>
+
                             </NumberOfLettersContext.Provider>
                         </>
 
@@ -51,7 +88,8 @@ const Letreis = () => {
                     </Route>
                     <Route path="/6" element={
                         <NumberOfLettersContext.Provider value={{ NUMBER_OF_LETTERS: 6, NUMBER_OF_ATTEMPTS: 8 }}>
-                            <Grid key={2} ref={ref5} answer={answer[1]}></Grid>
+
+                            <Grid ref={ref} key={"6/1"} answer={data ? data.split(',')[1] : "000000"} />
                         </NumberOfLettersContext.Provider>
 
                     }></Route>
