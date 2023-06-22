@@ -3,13 +3,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import { animated, useSpring } from "react-spring";
-import { Routes, Route, Link, useLocation } from 'react-router-dom'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Link} from 'react-router-dom'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTheme } from '@emotion/react';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -65,7 +61,7 @@ const AppBarStyled = () => {
                 <button onClick={() => setShow(prev => prev == 1 ? 0 : 1)}>dsfgsdf</button>
             </animated.div>
             <AppBar position="static" color='transparent' sx={{ border: 'none', boxShadow: 'none', height: '5vh', color: '#635C4E' }}>
-                <Toolbar sx={{ width: 'min(90vw,23vh*(11/3))', margin: '0 auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexGrow: 1 }}>
+                <Toolbar sx={{ width: 'min(90vw,23vh*(11/3))', margin: '0 auto',flexGrow: 1 }}>
                     {/* <div style={{ perspective: '120px' ,margin:'0px',padding:'0px'}}> */}
                         <animated.div style={{ ...propsIcon }}>
                             <KeyboardArrowDownIcon sx={{ fontSize: '2.5vh',top:'50%',left:'50%',transform:'translate(-50%,-50%)',position:'absolute' }}

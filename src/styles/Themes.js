@@ -25,16 +25,19 @@ const Themes = {
                 fontFamily:'baloo-regular',
                 fontWeight:900,
                 fontSize:'min(70px,10vw,(0.55vh*(6/8))*9)',
+                userSelect:'none',
             },
             gameKeyboard:{
                 fontFamily:'baloo-regular',
                 fontWeight:900,
-                fontSize:'min(2px,2vw,(0.40vh*(2/11))',
+                userSelect:'none',
+                fontSize:/* 'min(2px,3vw,(0.40vh*(2/11))' */'min(22px,3vw,4vh)',
             },
             title:{
                 fontFamily:'baloo-regular',
                 fontWeight:900,
                 fontSize:'4.5vh',
+                userSelect:'none',
             },
 
         },
