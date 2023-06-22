@@ -12,6 +12,7 @@ const useFetch = () => {
                 setData(data)
                 setLoading(false)
             }).catch(error=>{
+                if(error.message === 'Failed to fetch')setLoading(false)
                 console.log(error.message)
             })
     }, []);

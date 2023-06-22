@@ -118,14 +118,15 @@ const GridGame = forwardRef((props,ref) => {
     return (
         <>
 
-            <Container maxWidth='lg' sx={{ height: '93vh', display: 'flex', flexDirection: 'column' }}>
-                <Container maxWidth='sm' sx={{ width: `min(90vw,65vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
+            <Container maxWidth='lg' sx={{ height: '87vh', display: 'flex', flexDirection: 'column',marginTop:'5vh' }}>
+                <Container maxWidth='sm' sx={{ width: `min(90vw,50vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
                     <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                         {grid1}
                         {grid}
                     </Grid>
                 </Container>
-                <Keyboard keys={keyboardKeys} word={word} select={select} setSelect={setSelect} setWord={setWord}></Keyboard>
+                
+                <Keyboard select={select} setSelect={setSelect} word={word} setWord={setWord} setBackWord={setBackWord} answer={answer} attempt={attempt} setAttempt={setAttempt} wrongAnimation={wrongAnimation} setWrongAnimation={setWrongAnimation} setWon={setWon} keys={keyboardKeys} setKeyboardKeys={setKeyboardKeys} NUMBER_OF_LETTERS={NUMBER_OF_LETTERS}></Keyboard>
             </Container>
         </>
     )

@@ -1,11 +1,13 @@
 import { animated, useSpring } from "react-spring";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import InputSquare from "./cube_faces/InputSquare";
 import FilledSquare from "./cube_faces/FilledSquare";
 import EmptySquare from "./cube_faces/EmptySquare";
+import { NumberOfLettersContext } from "./Letreis";
 
 
 const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimation }) => {
+    const NUMBER_OF_LETTERS = useContext(NumberOfLettersContext).NUMBER_OF_LETTERS
     const [isFirstRun,setIsFirstRun] = useState(true)
     const [input, setInput] = useState(true)
     const { x } = useSpring({
@@ -18,8 +20,8 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
     const { i } = useSpring({
 
         i: successAnimation ? 0 : 1,
-        config: { mass: 7, tension: 900, friction: 300 },
-        delay: 1400 + (150 * id),
+        config: { mass: 7, tension: 900, friction: 150 },
+        delay: NUMBER_OF_LETTERS*260 + (100 * id),
 
     })
     const { j } = useSpring({
@@ -34,10 +36,11 @@ const Cube = ({ backLetter, letter, id, select, setSelect, stage, successAnimati
         transformStyle: 'preserve-3d',
         transform:'rotateY(-90deg) translateX(-50%) rotateY(90deg)',
         rotateY: x.to({ range: [0, 0.5, 1], output: [0, 90, 180] }),
-        translateY: i.to({ range: [0, 0.5, 1], output: ['0%', '-50%', '0%'] }),
+        translateY: i.to({ range: [0, 0.5, 1], output: ['0%', '-40%', '0%'] }),
         scaleX: j.to({ range: [0, 0.5, 1], output: ['100%', '150%', '100%'] }),
         
     }
+
     useEffect(()=>{
         if(isFirstRun){
             setIsFirstRun(false)

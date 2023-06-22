@@ -1,16 +1,18 @@
 import Grid from '@mui/material/Unstable_Grid2';
 import ButtonKeyboard from './ButtonKeyboard';
 import { Container } from '@mui/material';
+import button from '../../controllers/button.controller'
 
-
-const Keyboard = ({ keys,word, select, setSelect,setWord }) => {
-
+const Keyboard = ({ select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keys, setKeyboardKeys, NUMBER_OF_LETTERS}) => {
+    const funcButton=(letter)=>{
+        button(letter,select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keys, setKeyboardKeys, NUMBER_OF_LETTERS)
+    }
     
     const boardLine1 = Object.entries(keys).slice(0, 10).map((item, index) => {
 
         return (
             <Grid key={item[0]} xs={1}>
-                <ButtonKeyboard funci={()=>{console.log(item[0])}}background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord}></ButtonKeyboard>
+                <ButtonKeyboard funcButton={()=>funcButton(item[0])} background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord}></ButtonKeyboard>
             </Grid>
         )
     })
@@ -18,7 +20,7 @@ const Keyboard = ({ keys,word, select, setSelect,setWord }) => {
         
         return (
             <Grid key={item[0]} xs={item[0]==='DEL'?2:1}>
-                <ButtonKeyboard background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord} ></ButtonKeyboard>
+                <ButtonKeyboard funcButton={()=>funcButton(item[0])} background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord} ></ButtonKeyboard>
             </Grid>
         )
     })
@@ -26,14 +28,14 @@ const Keyboard = ({ keys,word, select, setSelect,setWord }) => {
 
         return (
             <Grid key={item[0]} xs={item[0]==='ENTER'?2:1} >
-                <ButtonKeyboard background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord}></ButtonKeyboard>
+                <ButtonKeyboard funcButton={()=>funcButton(item[0])} background={item[1]} letter={item[0]} word={word} select={select} setSelect={setSelect} setWord={setWord}></ButtonKeyboard>
             </Grid>
         )
     })
 
 
     return (
-        <Container sx={{ width: 'min(100vw,25vh*(11/3))',aspectRatio:'11/3', padding:'0px'}} >
+        <Container sx={{ width: 'min(90vw,23vh*(11/3))',aspectRatio:'11/3', padding:'0px' , marginTop:"3vh"}} >
             <Grid  columns={12} sx={{ width: '100%',margin:'0px'}} container rowSpacing={{xs:0.5,sm:1}} >
                 <Grid xs={12}>
                     <Grid container columns={11} xsOffset={0.4} columnSpacing={{xs:0.5, sm:1}}sx={{width:'100%'}}>
