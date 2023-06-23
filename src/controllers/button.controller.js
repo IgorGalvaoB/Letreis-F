@@ -71,7 +71,7 @@ const button = async (letter, select, setSelect, word, setWord, setBackWord, ans
     }
     switch (letter) {
         case "ENTER":
-            console.log('b')
+
             handleEnter();
             break;
         case "DEL":

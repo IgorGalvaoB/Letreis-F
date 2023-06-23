@@ -5,6 +5,7 @@ import Word from "./Word";
 import click from "../controllers/click.controller";
 import Keyboard from "./keyboard/Keyboard";
 import { NumberOfLettersContext } from "./Letreis";
+import keyboardControl from "../controllers/keyboard.controller";
 
 const GridGame = forwardRef((props,ref) => {
     const context = useContext(NumberOfLettersContext)
@@ -16,7 +17,7 @@ const GridGame = forwardRef((props,ref) => {
     const { data, date } = savedLetreis ? savedLetreis : { date: null, data: null }
     const [won, setWon] = useState(false)
     const [attempt, setAttempt] = useState(0)
-    const [backWord,setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({ '': 0 }))
+    const [backWord,setBackWord] = useState(new Array(NUMBER_OF_LETTERS).fill({'': 0 }))
     const [word, setWord] = useState(new Array(NUMBER_OF_LETTERS).fill(''))
     const [wrongAnimation, setWrongAnimation] = useState(false)
     const answer=props.answer
@@ -57,25 +58,25 @@ const GridGame = forwardRef((props,ref) => {
 
 
     })
-
+    
     const handleKeyDown = (event) => {
 
         click(event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keyboardKeys, setKeyboardKeys, NUMBER_OF_LETTERS)
 
     }
-
+    
     useEffect(() => {
 
-        if (data && date) {
-            
-            
+        if (data && date) {     
             if (date === fortaleza_date_str) {
                 setWon(data[data.length - 1][NUMBER_OF_LETTERS])
 
             }
         }
+        
         if (data && (date === fortaleza_date_str)) {
             setDataLength(data.length)
+            keyboardControl(keyboardKeys,setKeyboardKeys,data)
             setGrid1(data.map((item, index) => {
     
                 return (

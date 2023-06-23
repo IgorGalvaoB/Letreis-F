@@ -39,6 +39,12 @@ const Themes = {
                 fontSize:'4.5vh',
                 userSelect:'none',
             },
+            navbar:{
+                fontFamily:'baloo-regular',
+                fontWeight:500,
+                fontSize:'2vh',
+                userSelect:'none',
+            },
 
         },
         palette: {

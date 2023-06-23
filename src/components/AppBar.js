@@ -10,6 +10,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useTheme } from '@emotion/react';
 import SettingsIcon from '@mui/icons-material/Settings';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 
 const AppBarStyled = () => {
     const theme = useTheme();
@@ -55,10 +57,22 @@ const AppBarStyled = () => {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <animated.div style={{ ...propsNav }}>
-                <Link to='/'><button>CINCO LETRAS</button></Link>
-                <Link to='/6'><button>6 LETRAS</button></Link>
-                <button onClick={() => setShow(prev => prev == 1 ? 0 : 1)}>dsfgsdf</button>
+            <animated.div style={{ ...propsNav,display:'flex',flexDirection:'row',justifyContent:'space-between' }}>
+                <div>
+
+                    <Link to='/' style={{color:'white',textDecoration:'none',marginLeft:'1.5vw'}}>
+                        <Typography variant='navbar'>
+                            quinteto
+                        </Typography>
+                    </Link>
+                    <Link to='/6' style={{color:'white',textDecoration:'none',marginLeft:'1.5vw'}}>
+                        <Typography variant='navbar'>
+                            sexteto
+                        </Typography>
+                    </Link>
+                </div>
+              
+                <InfoRoundedIcon onClick={() => setShow(prev => prev == 1 ? 0 : 1)} sx={{margin:'0.3vh 1.5vw 0vh 0vh',color:'white',fontSize:'2.4vh',cursor:'pointer'}}>dsfgsdf</InfoRoundedIcon>
             </animated.div>
             <AppBar position="static" color='transparent' sx={{ border: 'none', boxShadow: 'none', height: '5vh', color: '#635C4E' }}>
                 <Toolbar sx={{ width: 'min(90vw,23vh*(11/3))', margin: '0 auto',flexGrow: 1 }}>
