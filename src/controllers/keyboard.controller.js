@@ -1,14 +1,12 @@
-const NUMBER_OF_LETTERS = 6
 
-
-const keyboardControl = (keys, setKeys, newWord) => {
+const keyboardControl = (keys, setKeys, word) => {
     const auxKeys = { ...keys }
-    const word = {...newWord}
-    const gridWord = word[0][word[0].length-1]===true||word[0][word[0].length-1]===false
-
-    console.log(gridWord)
+    const gridWord = word[0][0]?true:false 
     const changer = (wordItem)=>{
-        wordItem.forEach(item=> {
+        wordItem.forEach((item, index, arr) => {
+            if (arr.length === index + 1) {
+                return
+            }
             const letter = Object.keys(item)[0]
             const keyboardLetter = letter.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
             
@@ -31,17 +29,19 @@ const keyboardControl = (keys, setKeys, newWord) => {
                 default:
                     break;
             }
+            
+    
         })
     }
     if(!gridWord){
         changer(word)
     }else{
-        for(let i=0;i<word.length;i++){
-            console.log(word.slice(0,-1))
-            changer(word[i].slice(0,-1))
-        }
+        word.forEach(item=>{
+            changer(item)
+        })
     }
     
+ 
     setKeys(auxKeys)
 }
 export default keyboardControl

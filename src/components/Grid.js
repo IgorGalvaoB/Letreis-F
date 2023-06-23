@@ -66,9 +66,10 @@ const GridGame = forwardRef((props,ref) => {
     }
     
     useEffect(() => {
-
+        let victory=false;
         if (data && date) {     
             if (date === fortaleza_date_str) {
+                victory = (data[data.length - 1][NUMBER_OF_LETTERS]) 
                 setWon(data[data.length - 1][NUMBER_OF_LETTERS])
 
             }
@@ -76,7 +77,10 @@ const GridGame = forwardRef((props,ref) => {
         
         if (data && (date === fortaleza_date_str)) {
             setDataLength(data.length)
-            keyboardControl(keyboardKeys,setKeyboardKeys,data)
+            if(!victory){
+
+                keyboardControl(keyboardKeys,setKeyboardKeys,data)
+            }
             setGrid1(data.map((item, index) => {
     
                 return (
