@@ -16,12 +16,12 @@ const isWordExists = async (word,NUMBER_OF_LETTERS)=>{
     }
     try {
         if(word.length !== NUMBER_OF_LETTERS){
-            const error = new Error(`word length != ${NUMBER_OF_LETTERS}`)
+            const error = new Error(`SÓ PALAVRAS COM ${NUMBER_OF_LETTERS} LETRAS`)
             throw error
         }
         const backWord = await compare(word)
         if(!backWord){
-            const error = new Error(`word does not exists`)
+            const error = new Error(`ESSA PALAVRA NÃO É ACEITA`)
             throw error
         }
          

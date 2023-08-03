@@ -37,7 +37,6 @@ const ButtonKeyboard = ({ funcButton,background, letter,word,setWord,select, set
         alignItems:'center',
         height:'100%',
         aspectRatio:aspect,
-        color:theme.palette.common.white,
         borderRadius:'min(8px,1vw,0.7vh*(6/8))',
     
     }))
@@ -48,7 +47,7 @@ const ButtonKeyboard = ({ funcButton,background, letter,word,setWord,select, set
             {letter!=='DEL'&&<Typography variant='gameKeyboard'>
                 {letter.toUpperCase()}
             </Typography>}
-            {letter==='DEL'&&<BackspaceIcon sx={{fontSize:'min(22px,4vw,4vh)', transform:'traslanteX(90px)'}}/>}
+            {letter==='DEL'&&<BackspaceIcon sx={{fontSize:'min(22px,4vw,4vh)', transform:'traslanteX(90px)',color:'white'}}/>}
         </StyBox>
 
     )

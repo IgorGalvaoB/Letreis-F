@@ -3,9 +3,9 @@ import ButtonKeyboard from './ButtonKeyboard';
 import { Container } from '@mui/material';
 import button from '../../controllers/button.controller'
 
-const Keyboard = ({ select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keys, setKeyboardKeys, NUMBER_OF_LETTERS}) => {
+const Keyboard = ({ select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keys, setKeyboardKeys, NUMBER_OF_LETTERS,setAlertSnack,won}) => {
     const funcButton=(letter)=>{
-        button(letter,select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keys, setKeyboardKeys, NUMBER_OF_LETTERS)
+        button(letter,select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keys, setKeyboardKeys, NUMBER_OF_LETTERS,setAlertSnack,won)
     }
     
     const boardLine1 = Object.entries(keys).slice(0, 10).map((item, index) => {

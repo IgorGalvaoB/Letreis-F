@@ -1,11 +1,12 @@
 import { forwardRef, useEffect, useState, useContext } from "react";
-import { Container } from '@mui/material';
+import { Container, Snackbar } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Word from "./Word";
 import click from "../controllers/click.controller";
 import Keyboard from "./keyboard/Keyboard";
 import { NumberOfLettersContext } from "./Letreis";
 import keyboardControl from "../controllers/keyboard.controller";
+import AlertSnackbar from './snackbars/AlertSnackbar'
 
 const GridGame = forwardRef((props,ref) => {
     const context = useContext(NumberOfLettersContext)
@@ -13,7 +14,8 @@ const GridGame = forwardRef((props,ref) => {
     const NUMBER_OF_ATTEMPTS = context.NUMBER_OF_ATTEMPTS
     const [select,setSelect] = useState(0)
     const fortaleza_date_str = new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)
-    const savedLetreis = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
+    const local = localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`)
+    const savedLetreis = local?JSON.parse(local):null
     const { data, date } = savedLetreis ? savedLetreis : { date: null, data: null }
     const [won, setWon] = useState(false)
     const [attempt, setAttempt] = useState(0)
@@ -23,7 +25,12 @@ const GridGame = forwardRef((props,ref) => {
     const answer=props.answer
     let grid = []
     const [grid1,setGrid1] = useState([])
-  
+    const [alertSnack, setAlertSnack] = useState(
+        {
+            message: "",
+            show: false,
+        }
+    )
     const [dataLength,setDataLength] = useState(0)
     const [keyboardKeys, setKeyboardKeys] = useState({
 
@@ -61,7 +68,8 @@ const GridGame = forwardRef((props,ref) => {
     
     const handleKeyDown = (event) => {
 
-        click(event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keyboardKeys, setKeyboardKeys, NUMBER_OF_LETTERS)
+        setAlertSnack({...alertSnack,show:false})
+        click(event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keyboardKeys, setKeyboardKeys, NUMBER_OF_LETTERS,setAlertSnack,won)
 
     }
     
@@ -122,8 +130,8 @@ const GridGame = forwardRef((props,ref) => {
   
     return (
         <>
-
-            <Container maxWidth='lg' sx={{ height: '87vh', display: 'flex', flexDirection: 'column',marginTop:'5vh' }}>
+            <AlertSnackbar message={alertSnack.message} show={alertSnack.show}/>
+            <Container maxWidth='lg' sx={{ height: '80vh', display: 'flex', flexDirection: 'column',marginTop:'0vh' }}>
                 <Container maxWidth='sm' sx={{ width: `min(90vw,50vh*(${NUMBER_OF_LETTERS / NUMBER_OF_ATTEMPTS}))`, marginTop: '3vh', outline: 'none' }} tabIndex='-1' onKeyUp={handleKeyDown} ref={ref} >
                     <Grid container rowSpacing={{ xs: '1px', phone: '2px' }} columns={1} sx={{ width: '100%' }}>
                         {grid1}
@@ -131,7 +139,7 @@ const GridGame = forwardRef((props,ref) => {
                     </Grid>
                 </Container>
                 
-                <Keyboard select={select} setSelect={setSelect} word={word} setWord={setWord} setBackWord={setBackWord} answer={answer} attempt={attempt} setAttempt={setAttempt} wrongAnimation={wrongAnimation} setWrongAnimation={setWrongAnimation} setWon={setWon} keys={keyboardKeys} setKeyboardKeys={setKeyboardKeys} NUMBER_OF_LETTERS={NUMBER_OF_LETTERS}></Keyboard>
+                <Keyboard won={won}setAlertSnack={setAlertSnack} select={select} setSelect={setSelect} word={word} setWord={setWord} setBackWord={setBackWord} answer={answer} attempt={attempt} setAttempt={setAttempt} wrongAnimation={wrongAnimation} setWrongAnimation={setWrongAnimation} setWon={setWon} keys={keyboardKeys} setKeyboardKeys={setKeyboardKeys} NUMBER_OF_LETTERS={NUMBER_OF_LETTERS}></Keyboard>
             </Container>
         </>
     )

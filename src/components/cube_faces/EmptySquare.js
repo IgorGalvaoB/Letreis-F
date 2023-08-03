@@ -5,7 +5,7 @@ const EmptySquare = ()=>{
     
     const StyBox = styled(Box)(({ theme }) => ({
           
-        backgroundColor: 'rgb(125,116,97)',
+        backgroundColor: theme.palette.cubes.emptyCube,
         opacity: '0.7',
         backfaceVisibility: 'hidden',
         position: 'absolute',

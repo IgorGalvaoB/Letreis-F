@@ -1,15 +1,17 @@
 import Grid from "./Grid"
 import AppBar from "./AppBar"
-import { useEffect, useRef, createContext } from 'react'
+import { useEffect, useRef, createContext,useContext } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import useFetch from "../utils/useFetch"
+import { ThemeContext } from "./ToggleTheme";
 export const NumberOfLettersContext = createContext({})
 
 
 
 const Letreis = () => {
 
-    
+    const theme = useContext(ThemeContext)
+    console.log(theme)
     const ref = useRef(null)
     const location = useLocation().pathname
 
@@ -65,10 +67,9 @@ const Letreis = () => {
     return (
         <>
 
-            <div onClick={handleClick} style={{ display: loading && 'none',height:'100%',overflow:'hidden' }}>
-            <AppBar/>
-            
-         
+            <div onClick={handleClick} style={{ display: loading && 'none', height: '85vh' }}>
+                <AppBar />
+                <button onClick={theme}></button>
                 <Routes>
                     <Route path='/' element={
                         <>
@@ -86,7 +87,7 @@ const Letreis = () => {
 
                     }></Route>
                     <Route path='/me' element={
-                        <div>aaa</div>}>
+                        <div ref={ref}>aaa</div>}>
                     </Route>
                 </Routes>
             </div>

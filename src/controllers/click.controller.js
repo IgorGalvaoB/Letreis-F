@@ -5,10 +5,13 @@ import keyboardControl from "./keyboard.controller"
 
 
 
-const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon,keyboardKeys,setKeyboardKeys,NUMBER_OF_LETTERS) => {
+const click = async (event, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation,setWon,keyboardKeys,setKeyboardKeys,NUMBER_OF_LETTERS,setAlertSnack,won) => {
     
     const charCode = event.keyCode
     
+    if(won){
+        return;
+    }
     
     const handleSelect = (space) => {
         if(select===null)return
@@ -119,7 +122,8 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
             setSelect(0)
             setWord((new Array(NUMBER_OF_LETTERS).fill('')))
             keyboardControl(keyboardKeys,setKeyboardKeys,data)
-            const arr = JSON.parse(localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`))
+            const local = localStorage.getItem(`Letreis${NUMBER_OF_LETTERS}`)
+            const arr = local?JSON.parse(local):null
            
             if(arr && arr.date===new Date().toLocaleString("pt-BR", { timeZone: "America/Fortaleza" }).slice(0, -10)){
                 arr.data.push(data)
@@ -136,9 +140,25 @@ const click = async (event, select, setSelect, word, setWord, setBackWord, answe
                 localStorage.setItem(`Letreis${NUMBER_OF_LETTERS}`, JSON.stringify(newLog));
             } 
         } catch (error) {
-
-            console.log(error.message)
-            setWrongAnimation(!wrongAnimation)
+            switch(error.message){
+                case "ESSA PALAVRA NÃO É ACEITA":
+                    setAlertSnack({
+                        message:error.message,
+                        show:true,
+                    })
+                    setWrongAnimation(!wrongAnimation);
+                    break;
+                case `SÓ PALAVRAS COM ${NUMBER_OF_LETTERS} LETRAS`:
+                    setAlertSnack({
+                        message:error.message,
+                        show:true,
+                    })
+                    setWrongAnimation(!wrongAnimation);
+                    break;
+                default:
+                    console.log(error.message);
+                    break;
+            }
         }
 
     } else {

@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 export const ThemeContext = createContext({})
 
 const ToggleThemeLetrix = () => {
-    const [selectedTheme, setSelectedTheme] = useState(Themes.lightTheme)
+    const [selectedTheme, setSelectedTheme] = useState(Themes.darkTheme)
 
     const toggleTheme = () => {
         setSelectedTheme((preTheme) => preTheme.palette.mode === 'dark' ? Themes.lightTheme : Themes.darkTheme)

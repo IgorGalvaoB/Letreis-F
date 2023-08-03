@@ -3,8 +3,10 @@ import isWordExists from "./isWordExists.controller"
 import compareAnswer from "./compareAnswer.controller"
 import keyboardControl from "./keyboard.controller"
 
-const button = async (letter, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keyboardKeys, setKeyboardKeys, NUMBER_OF_LETTERS) => {
-
+const button = async (letter, select, setSelect, word, setWord, setBackWord, answer, attempt, setAttempt, wrongAnimation, setWrongAnimation, setWon, keyboardKeys, setKeyboardKeys, NUMBER_OF_LETTERS,setAlertSnack,won) => {
+    if(won){
+        return;
+    }
     const handleSelect = (space) => {
         if (select === null) return
         let aux = null
@@ -63,10 +65,26 @@ const button = async (letter, select, setSelect, word, setWord, setBackWord, ans
                 newLog.data.push(data)
                 localStorage.setItem(`Letreis${NUMBER_OF_LETTERS}`, JSON.stringify(newLog));
             }
-        } catch (error) {
-
-            console.log(error.message)
-            setWrongAnimation(!wrongAnimation)
+        } catch (error){
+            switch(error.message){
+                case "ESSA PALAVRA NÃO É ACEITA":
+                    setAlertSnack({
+                        message:error.message,
+                        show:true,
+                    })
+                    setWrongAnimation(!wrongAnimation);
+                    break;
+                case `SÓ PALAVRAS COM ${NUMBER_OF_LETTERS} LETRAS`:
+                    setAlertSnack({
+                        message:error.message,
+                        show:true,
+                    })
+                    setWrongAnimation(!wrongAnimation);
+                    break;
+                default:
+                    console.log(error.message);
+                    break;
+            }
         }
     }
     switch (letter) {
