@@ -53,6 +53,13 @@ const Themes = {
                 fontSize:'2vh',
                 userSelect:'none',
             },
+            config:{
+                fontFamily:'baloo-regular',
+                fontWeight:500,
+                fontSize:'1.5vh',
+                userSelect:'none',
+            },
+
 
         },
         palette: {
@@ -138,6 +145,12 @@ const Themes = {
                 fontFamily:'baloo-regular',
                 fontWeight:500,
                 fontSize:'2vh',
+                userSelect:'none',
+            },
+            config:{
+                fontFamily:'baloo-regular',
+                fontWeight:500,
+                fontSize:'1.5vh',
                 userSelect:'none',
             },
 

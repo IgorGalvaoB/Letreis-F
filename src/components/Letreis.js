@@ -69,7 +69,7 @@ const Letreis = () => {
 
             <div onClick={handleClick} style={{ display: loading && 'none', height: '85vh' }}>
                 <AppBar />
-                <button onClick={theme}></button>
+
                 <Routes>
                     <Route path='/' element={
                         <>

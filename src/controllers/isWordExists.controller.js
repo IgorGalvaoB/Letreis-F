@@ -11,6 +11,7 @@ const isWordExists = async (word,NUMBER_OF_LETTERS)=>{
         if (!teste) {
             return false
         } else {
+            
             return teste[0].slice(1, -1)
         }
     }
