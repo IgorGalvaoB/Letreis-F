@@ -6,13 +6,13 @@ const useFetch = () => {
    
 
     useEffect(() => {
-        fetch(/*'http://localhost:3001/words*/'https://letrix-back-6333f421c613.herokuapp.com/words',{cache:'no-cache'})
+        fetch('https://teste-letrix-b61ef647dd1b.herokuapp.com/words',{cache:'no-cache'})
             .then((res) => res.json())
             .then(({data}) => {     
                 setData(data)
                 setLoading(false)
             }).catch(error=>{
-                //if(error.message === 'Failed to fetch')
+                if(error.message === 'Failed to fetch')
                 console.log(error.message)
             })
     }, []);

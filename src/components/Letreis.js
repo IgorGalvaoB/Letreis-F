@@ -10,8 +10,7 @@ export const NumberOfLettersContext = createContext({})
 
 const Letreis = () => {
 
-    const theme = useContext(ThemeContext)
-    console.log(theme)
+
     const ref = useRef(null)
     const location = useLocation().pathname
 
